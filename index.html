@@ -4111,10 +4111,13 @@ function generateAnalyticsReport(){
 // Clear the pasted data and the report (the owner numbers / notes / lost reasons you typed are kept)
 function clearAnalyticsReport(){
   const box = document.getElementById('analyticsPasteBox');
-  if(!box.value.trim() && !analyticsModel){ box.focus(); return; }
-  if(!confirm('Clear the pasted data and the report?\n\nOwner / manager numbers, notes and lost-customer reasons you typed are kept.')) return;
+  if(!box.value.trim() && !analyticsModel && !jparse(localStorage.getItem(PAY_SNAP_KEY), null)){ box.focus(); return; }
+  if(!confirm('Clear the pasted data, the report and the Pending / Overdue totals on Home?\n\nOwner / manager numbers, notes, lost-customer reasons and the month-to-month report history are kept.')) return;
   box.value = '';
   analyticsModel = null;
+  // also clear the Home summary (saved as "null" — not removed — so every device clears it too)
+  try{ localStorage.setItem(PAY_SNAP_KEY, 'null'); } catch(e){}
+  try{ renderHome(); } catch(e){}
   ['filteredCustomerReport', 'analyticsFullReport', 'analyticsOverdueSection', 'analyticsLostCustomersSection'].forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = ''; });
   ['filterMonthSelect', 'filterCustomerSelect'].forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = ''; });
   ['analyticsStatusText', 'analyticsPdfStatus', 'lostCustomersPdfStatus'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = ''; });
