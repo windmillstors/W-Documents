@@ -1042,25 +1042,6 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
 @keyframes spRun{0%{left:-40%}100%{left:100%}}
 @media (prefers-reduced-motion:reduce){#wmSplash *{animation:none!important}}
 
-/* ══ Face ID / fingerprint ══ */
-.bio-btn{width:100%;height:52px;border:0;border-radius:14px;background:#e3a54f;color:#1d1814;font:800 15px 'Manrope',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;margin:0 0 6px;box-shadow:0 10px 24px -12px rgba(227,165,79,.7);}
-.bio-btn svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
-.bio-btn:active{transform:scale(.98);}
-.bio-or{display:flex;align-items:center;gap:10px;margin:14px 0 12px;font-size:11.5px;font-weight:700;color:#8f8272;}
-.bio-or::before,.bio-or::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.12);}
-#appLockOverlay.has-bio .btn-coffee{background:transparent !important;color:#efe4d6 !important;border:1px solid rgba(255,255,255,.18) !important;box-shadow:none !important;}
-.bio-btn svg{flex-shrink:0;} .bio-btn span{line-height:1.2;}
-.bio-msg{font-size:12px;font-weight:600;color:#ffb3a5;margin:4px 0 8px;}
-#bioAsk{position:fixed;inset:0;z-index:100001;background:rgba(18,14,11,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;}
-#bioAsk.open{display:flex;}
-#bioAsk .ba-card{background:var(--panel);border-radius:22px;max-width:340px;width:100%;padding:26px 22px 18px;text-align:center;box-shadow:0 30px 80px -20px rgba(0,0,0,.5);animation:spIn .35s cubic-bezier(.2,.8,.2,1) both;}
-#bioAsk .ba-ic{width:64px;height:64px;border-radius:18px;background:#1d1814;color:#e3a54f;display:grid;place-items:center;margin:0 auto 14px;}
-#bioAsk .ba-ic svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-#bioAsk h3{margin:0 0 6px;font-family:'Fraunces',serif;font-size:21px;font-weight:600;color:var(--coffee-deep);}
-#bioAsk p{margin:0 0 18px;font-size:13px;line-height:1.5;color:var(--ink-soft);font-weight:600;}
-#bioAsk .btn{width:100%;margin-top:8px;}
-.bio-set{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.bio-set .bio-state{font-size:13px;font-weight:700;color:var(--ink-soft);margin-right:auto;}
 </style>
 </head>
 <body>
@@ -1071,9 +1052,6 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
     <img class="lock-logo" src="data:image/png;base64,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" alt="Windmill Cafe &amp; Roastery">
     <h2 class="lock-title">Office Tools</h2>
     <p style="font-size:12.5px;color:var(--ink-soft);margin:0 0 18px;">Enter the password to continue</p>
-    <button type="button" id="bioUnlockBtn" class="bio-btn" onclick="bioUnlock()" style="display:none"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2"/><path d="M9 9v1.5M15 9v1.5M12 9v4.5h-1M9.5 16.5c1.5 1.2 3.5 1.2 5 0"/></svg><span id="bioBtnLbl">Unlock with Face ID</span></button>
-    <div id="bioOr" class="bio-or" style="display:none"><span>or use the password</span></div>
-    <div id="bioMsg" class="bio-msg" style="display:none"></div>
     <input type="password" id="appLockPasswordInput" placeholder="Password" style="width:100%;font-family:'Inter', sans-serif;font-size:14.5px;padding:10px 12px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink);outline:none;text-align:center;margin-bottom:12px;" onkeydown="if(event.key==='Enter'){unlockApp();}">
     <button class="btn btn-coffee" style="width:100%;" onclick="unlockApp()">Unlock</button>
     <div id="appLockError" style="color:var(--danger);font-size:12px;margin-top:10px;display:none;">Incorrect password. Try again.</div>
@@ -1948,6 +1926,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
           <button class="btn btn-gold" onclick="saveCloudConfig()">Save &amp; Connect</button>
           <button class="btn btn-ghost" onclick="removeCloudConfig()">Disconnect this computer</button>
           <button class="btn btn-ghost" id="preCloudBtn" style="display:none;" onclick="downloadPreCloudData()">⬇ This computer's data from before the cloud</button>
+          <button class="btn btn-gold" id="preCloudRestoreBtn" style="display:none;" onclick="restorePreCloudData()">↩ Add this device's missing entries back</button>
         </div>
         <details style="margin-top:10px;font-size:12.5px;color:var(--ink-soft);">
           <summary style="cursor:pointer;font-weight:700;color:var(--coffee);">Firebase Rules to use (Realtime Database → Rules)</summary>
@@ -2108,7 +2087,9 @@ function cloudConfig(){
 }
 function cloudKeyFromPassword(pw){ return sha256(CLOUD_PATH_SALT + ':' + String(pw || '')); }
 const CUST_KEY = 'windmillCustomers_v1';
-function isStoreKey(k){ return /^windmill/.test(k) && !DEVICE_ONLY[k] && k !== ITEMS_KEY && k !== COUNTER_KEY && k !== QUOTES_KEY && k !== CUST_KEY; }
+/* keys that belong to the other Windmill apps on the same web address (Orders, Green Beans, Beans Stock) — never sync these */
+const OTHER_APP_KEY = /^windmill_(session|dispatch|alert|auth|defaultRoast)|^windmillRoastery/;
+function isStoreKey(k){ return /^windmill/.test(k) && !OTHER_APP_KEY.test(k) && !DEVICE_ONLY[k] && k !== ITEMS_KEY && k !== COUNTER_KEY && k !== QUOTES_KEY && k !== CUST_KEY; }
 function itemKey(name){ return String(name || '').trim().toLowerCase().replace(/[.#$\[\]\/]/g, '_').slice(0, 200) || '_'; }
 function quoteId(ref){ return String(ref || '').trim().replace(/^#/, '').replace(/[.#$\[\]\/\s]+/g, '-').slice(0, 80) || ('Q-' + Date.now()); }
 
@@ -2131,6 +2112,7 @@ function cloudPushKey(k){
   if(!(k in cloud.pending)) return Promise.resolve();
   const v = cloud.pending[k]; delete cloud.pending[k];
   cloud.pushed[k] = v;
+  syncBaseMark(k, v);
   return cloud.base.child('store/' + k).set(v == null ? null : { v, at: firebase.database.ServerValue.TIMESTAMP }).catch(cloudError);
 }
 function cloudFlushNow(){
@@ -2190,6 +2172,44 @@ const FIRST_MERGE = {
   windmillAddressBook_v1(l, c){ const lines = String(c || '').split('\n').filter(x => x.trim()); String(l || '').split('\n').forEach(x => { if(x.trim() && !lines.includes(x)) lines.push(x); }); return lines.join('\n'); }
 };
 
+/* ── SAFE SYNC (fix for entries going missing) ─────────────────────────
+   Before: when this device had entries that never reached the cloud
+   (typed while "Connecting…"/offline, or saved before this device joined),
+   the cloud copy simply replaced them and they disappeared.
+   Now: the device remembers a fingerprint of the last copy it shared with
+   the cloud. If the local copy has changed since then, local and cloud are
+   MERGED (nothing is dropped) and the result is uploaded. */
+const SYNC_SINGLE = { windmillPaymentsSnapshot_v1:1, windmillPettyCashSummary_v1:1, windmillOverdueThresholdDays_v1:1, windmillLostCustomerExcludeLastMonth_v1:1 };
+function syncBaseMark(k, v){ try{ _lsSet.call(localStorage, 'wmdev_bh_' + k, v == null ? '' : sha256(String(v))); } catch(e){} }
+function syncLocalChanged(k, lv){ let bh = null; try{ bh = localStorage.getItem('wmdev_bh_' + k); } catch(e){} return !(bh && bh === sha256(String(lv))); }
+function syncIdOf(e){ if(e && typeof e === 'object') return String(e.id || e.ref || e.day || e.key || e.date || e.name || JSON.stringify(e)); return String(e); }
+function syncMergeAny(k, lv, cv){
+  if(FIRST_MERGE[k]) return FIRST_MERGE[k](lv, cv);
+  if(SYNC_SINGLE[k]) return cv;
+  let L, C; try{ L = JSON.parse(lv); C = JSON.parse(cv); } catch(e){ return cv; }
+  if(Array.isArray(L) && Array.isArray(C)){
+    const seen = new Set(C.map(syncIdOf)); const out = C.slice();
+    L.forEach(e => { const id = syncIdOf(e); if(!seen.has(id)){ seen.add(id); out.push(e); } });
+    return JSON.stringify(out);
+  }
+  if(L && C && typeof L === 'object' && typeof C === 'object' && !Array.isArray(L) && !Array.isArray(C)){
+    const out = Object.assign({}, C); let add = false;
+    Object.keys(L).forEach(x => {
+      if(!(x in out)){ out[x] = L[x]; add = true; }
+      else if(L[x] && out[x] && typeof L[x] === 'object' && typeof out[x] === 'object'){
+        const tl = L[x].updatedAt || L[x].savedAt || L[x].at || 0, tc = out[x].updatedAt || out[x].savedAt || out[x].at || 0;
+        if(tl > tc){ out[x] = L[x]; add = true; }
+      }
+    });
+    return add ? JSON.stringify(out) : cv;
+  }
+  return cv;
+}
+function syncKeepAside(obj){
+  if(!Object.keys(obj).length) return;
+  try{ const prev = JSON.parse(localStorage.getItem('wmdev_preCloud_v1') || 'null'); const data = Object.assign({}, prev && prev.data, obj);
+       localStorage.setItem('wmdev_preCloud_v1', JSON.stringify({ savedAt: new Date().toISOString(), data })); } catch(e){}
+}
 async function cloudJoin(){
   const snap = await cloud.base.once('value');
   const all = snap.val() || {};
@@ -2201,14 +2221,16 @@ async function cloudJoin(){
     if(!isStoreKey(k)) continue;
     const lv = localStorage.getItem(k), cv = store[k] ? store[k].v : undefined;
     if(cv === undefined){ up[k] = lv; continue; }                // only here → upload
-    if(cv === lv) continue;
-    if(firstTime){
-      if(FIRST_MERGE[k]){ const m = FIRST_MERGE[k](lv, cv); if(m !== cv) up[k] = m; lsQuiet(k, m); }
-      else { preCloud[k] = lv; lsQuiet(k, cv); }                 // cloud wins — this computer's copy is kept aside
+    if(cv === lv){ syncBaseMark(k, cv); continue; }
+    if(firstTime || syncLocalChanged(k, lv)){                   // this device has entries the cloud never got → merge, don't drop
+      const m = syncMergeAny(k, lv, cv);
+      if(m !== lv) preCloud[k] = lv;                             // keep this device's copy aside anyway, just in case
+      if(m !== cv) up[k] = m;
+      lsQuiet(k, m); syncBaseMark(k, m);
     }
   }
   Object.keys(up).forEach(k => { cloud.pushed[k] = up[k]; cloud.base.child('store/' + k).set({ v: up[k], at: firebase.database.ServerValue.TIMESTAMP }).catch(cloudError); });
-  if(Object.keys(preCloud).length){ try{ localStorage.setItem('wmdev_preCloud_v1', JSON.stringify({ savedAt: new Date().toISOString(), data: preCloud })); } catch(e){} }
+  syncKeepAside(preCloud);
 
   // items: add this computer's items that the cloud doesn't have (cloud prices win for the same name)
   cloud.itemsMap = all.items || {};
@@ -2244,6 +2266,7 @@ function cloudListen(){
       const v = store[k] && store[k].v;
       if(v == null || k in cloud.pending) return;               // our own newer change is on its way
       if(localStorage.getItem(k) !== v){ lsQuiet(k, v); changed.push(k); }
+      syncBaseMark(k, v);
     });
     if(changed.length) cloudRefreshViews(changed);
     cloudSetStatus();
@@ -2388,6 +2411,20 @@ function removeCloudConfig(){
   if(!confirm('Stop using the cloud on this computer? (Nothing is deleted — the data stays in the cloud and on this computer.)')) return;
   try{ localStorage.removeItem('wmdev_firebaseConfig'); } catch(e){}
   location.reload();
+}
+/* Put back entries that an older version of the app set aside on this device */
+function restorePreCloudData(){
+  let obj = null; try{ obj = JSON.parse(localStorage.getItem('wmdev_preCloud_v1') || 'null'); } catch(e){}
+  if(!obj || !obj.data){ alert('Nothing was kept aside on this device.'); return; }
+  let n = 0;
+  Object.keys(obj.data).forEach(k => {
+    if(!isStoreKey(k)) return;
+    const cur = localStorage.getItem(k), m = cur == null ? obj.data[k] : syncMergeAny(k, obj.data[k], cur);
+    if(m !== cur){ localStorage.setItem(k, m); n++; }              // normal save → goes to the cloud too
+  });
+  try{ cloudRefreshViews(Object.keys(obj.data)); } catch(e){}
+  try{ if(isHomeVisible()) renderHome(); } catch(e){}
+  alert(n ? 'Done — entries from this device were added back (' + n + ' list' + (n !== 1 ? 's' : '') + ' updated). Nothing was removed.' : 'Everything kept aside is already in the app — nothing to add.');
 }
 function downloadPreCloudData(){
   const raw = localStorage.getItem('wmdev_preCloud_v1'); if(!raw) return;
@@ -7159,7 +7196,7 @@ renderAnalyticsOldBalancesPreview();
   } catch(e){}
   cloudSetStatus();
   renderQuoteHistory();
-  try{ if(localStorage.getItem('wmdev_preCloud_v1')) document.getElementById('preCloudBtn').style.display = ''; } catch(e){}
+  try{ if(localStorage.getItem('wmdev_preCloud_v1')){ document.getElementById('preCloudBtn').style.display = ''; document.getElementById('preCloudRestoreBtn').style.display = ''; } } catch(e){}
   try{ const c = cloudConfig(); if(c) document.getElementById('cloudConfigBox').value = JSON.stringify(c, null, 2); } catch(e){}
   migrateAddressBookToCustomers();
   refreshCustomerDatalist();
@@ -7187,7 +7224,7 @@ renderAnalyticsOldBalancesPreview();
     waitingCloud=true; show('Loading your data…'); t0=Date.now();
     clearTimeout(killTimer); killTimer=setTimeout(hide,9000);   // never block the app longer than this
   }
-  window.wmSplashHide=hide; window.wmSplashWait=waitForCloud;
+  window.wmSplashHide=hide;
   var _css=window.cloudSetStatus;
   if(typeof _css==='function'){ window.cloudSetStatus=function(){ var r=_css.apply(this,arguments); if(waitingCloud && cloudDone()) hide(); return r; }; }
   var _unlock=window.unlockApp;
@@ -7200,114 +7237,8 @@ renderAnalyticsOldBalancesPreview();
   setTimeout(function(){ if(!waitingCloud) hide(); },12000); // safety net
 })();
 </script>
-<div id="bioAsk"><div class="ba-card"><div class="ba-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3H5a2 2 0 0 0-2 2v2M17 3h2a2 2 0 0 1 2 2v2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2"/><path d="M9 9v1.5M15 9v1.5M12 9v4.5h-1M9.5 16.5c1.5 1.2 3.5 1.2 5 0"/></svg></div><h3 id="baTitle">Use Face ID next time?</h3><p id="baText">Open Windmill SOA with a look or a touch instead of typing the password. Only works on this device.</p><button class="btn btn-coffee" id="baYes" onclick="bioEnroll(true)">Turn on</button><button class="btn btn-ghost" onclick="bioAskClose(true)">Not now</button></div></div>
-<script>
-/* ══ Face ID / Touch ID / fingerprint / Windows Hello unlock (WebAuthn) ══
-   After the password has unlocked the app once, this device can keep the
-   unlock key and release it only after the phone / laptop confirms the
-   owner's face or fingerprint. The password itself is never stored.
-   Stored under "wmsoaBio_v1" — not a "windmill…" key, so it is never sent
-   to the cloud and never goes into backups. */
-(function(){
-  var KEY='wmsoaBio_v1', DECL='wmsoaBioNo_v1';
-  var ua=navigator.userAgent||'';
-  var LABEL=/iPhone|iPad|iPod/.test(ua)?'Face ID':(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)?'Face ID':/Android/.test(ua)?'Fingerprint':/Macintosh/.test(ua)?'Touch ID':/Windows/.test(ua)?'Windows Hello':'Face ID / Fingerprint';
-  function get(){ try{ return JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return null; } }
-  function put(d){ try{ if(d) localStorage.setItem(KEY,JSON.stringify(d)); else localStorage.removeItem(KEY); }catch(e){} }
-  function rnd(n){ var a=new Uint8Array(n); crypto.getRandomValues(a); return a; }
-  function b64(buf){ var s='',a=new Uint8Array(buf); for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
-  function unb64(s){ s=s.replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4)s+='='; var b=atob(s),a=new Uint8Array(b.length); for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i); return a.buffer; }
-  function sess(){ try{ return { on:sessionStorage.getItem(APP_UNLOCK_SESSION_KEY)==='1', key:sessionStorage.getItem(CLOUD_KEY_SESSION), ver:sessionStorage.getItem('windmillPwVerifier_v1') }; }catch(e){ return {}; } }
-  var avail=null;
-  function available(){
-    if(avail) return avail;
-    avail = (window.PublicKeyCredential && PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable && window.isSecureContext)
-      ? PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable().catch(function(){return false;})
-      : Promise.resolve(false);
-    return avail;
-  }
-  function msg(t){ var m=document.getElementById('bioMsg'); if(!m)return; m.textContent=t||''; m.style.display=t?'block':'none'; }
-  function paintLock(){
-    var d=get(), b=document.getElementById('bioUnlockBtn'), o=document.getElementById('bioOr');
-    if(!b)return;
-    document.getElementById('bioBtnLbl').textContent='Unlock with '+LABEL;
-    available().then(function(ok){ var on=!!(ok&&d); b.style.display=on?'flex':'none'; o.style.display=on?'flex':'none'; var ov=document.getElementById('appLockOverlay'); if(ov) ov.classList.toggle('has-bio',on); });
-  }
-  window.bioUnlock=async function(auto){
-    var d=get(); if(!d)return;
-    try{ if(typeof retiredPw==='function' && retiredPw().indexOf(d.ver)!==-1){ put(null); paintLock(); msg('The password was changed — please use the new password once.'); return; } }catch(e){}
-    msg('');
-    try{
-      await navigator.credentials.get({ publicKey:{ challenge:rnd(32), allowCredentials:[{type:'public-key', id:unb64(d.id)}], userVerification:'required', timeout:60000 } });
-    }catch(e){
-      if(!auto) msg(e && e.name==='NotAllowedError' ? LABEL+' was cancelled — try again or use the password.' : LABEL+' did not work here — use the password.');
-      return;
-    }
-    try{ sessionStorage.setItem(APP_UNLOCK_SESSION_KEY,'1'); sessionStorage.setItem(CLOUD_KEY_SESSION,d.key); sessionStorage.setItem('windmillPwVerifier_v1',d.ver); }catch(e){}
-    document.getElementById('appLockOverlay').style.display='none';
-    document.getElementById('appWrap').style.display='block';
-    if(window.wmSplashWait) window.wmSplashWait();
-    startCloud();
-  };
-  window.bioEnroll=async function(fromAsk){
-    var s=sess(); if(!s.on||!s.key){ alert('Unlock with the password first.'); return; }
-    try{
-      var cred=await navigator.credentials.create({ publicKey:{
-        rp:{ name:'Windmill SOA' },
-        user:{ id:rnd(16), name:'windmill-soa', displayName:'Windmill SOA' },
-        challenge:rnd(32),
-        pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],
-        authenticatorSelection:{ authenticatorAttachment:'platform', userVerification:'required', residentKey:'discouraged' },
-        timeout:60000, attestation:'none' } });
-      put({ id:b64(cred.rawId), key:s.key, ver:s.ver, at:Date.now() });
-      try{ localStorage.removeItem(DECL); }catch(e){}
-      bioAskClose(false); paintSettings();
-      if(typeof toast==='function') try{ toast(LABEL+' is on for this device'); }catch(e){}
-      else if(!fromAsk) alert(LABEL+' is on for this device.');
-    }catch(e){
-      if(e && e.name!=='NotAllowedError') alert(LABEL+' could not be set up on this device.');
-    }
-  };
-  window.bioTurnOff=function(){ put(null); paintSettings(); paintLock(); };
-  window.bioAskClose=function(declined){ document.getElementById('bioAsk').classList.remove('open'); if(declined){ try{ localStorage.setItem(DECL,'1'); }catch(e){} } };
-  function maybeAsk(){
-    if(get()) return;
-    try{ if(localStorage.getItem(DECL)==='1') return; }catch(e){}
-    available().then(function(ok){ if(!ok) return;
-      document.getElementById('baTitle').textContent='Use '+LABEL+' next time?';
-      document.getElementById('baYes').textContent='Turn on '+LABEL;
-      setTimeout(function(){ document.getElementById('bioAsk').classList.add('open'); },1200);
-    });
-  }
-  /* Settings card */
-  function paintSettings(){
-    var host=document.getElementById('mainTab-settings'); if(!host) return;
-    var c=document.getElementById('bioSettingsCard');
-    available().then(function(ok){
-      if(!c){ c=document.createElement('div'); c.className='panel'; c.id='bioSettingsCard'; host.insertBefore(c,host.firstChild); }
-      var d=get();
-      c.innerHTML='<h2>'+LABEL+' unlock</h2><div class="bio-set"><span class="bio-state">'+(!ok?'This device does not support '+LABEL+' in the browser.':d?'On for this device — the app opens with '+LABEL+'.':'Off — the app asks for the password.')+'</span>'
-        +(ok?(d?'<button class="btn btn-ghost" onclick="bioTurnOff()">Turn off</button>':'<button class="btn btn-coffee" onclick="bioEnroll(false)">Turn on</button>'):'')+'</div>';
-    });
-  }
-  /* hooks */
-  var _unlock=window.unlockApp;
-  window.unlockApp=async function(){ var r=await _unlock.apply(this,arguments); var w=document.getElementById('appWrap'); if(w&&w.style.display==='block'){ msg(''); maybeAsk(); } return r; };
-  var _lock=window.lockAppNow;
-  if(typeof _lock==='function') window.lockAppNow=function(){ var r=_lock.apply(this,arguments); paintLock(); return r; };
-  var _moved=window.onFolderMoved;
-  if(typeof _moved==='function') window.onFolderMoved=function(){ put(null); return _moved.apply(this,arguments); };
-  var _css=window.cloudSetStatus;   // keep the saved key up to date if the password is changed in this session
-  if(typeof _css==='function') window.cloudSetStatus=function(){ var r=_css.apply(this,arguments); try{ var d=get(), s=sess(); if(d && cloud.on && s.key && s.key!==d.key){ d.key=s.key; d.ver=s.ver; put(d); } }catch(e){} return r; };
-  var _nav=window.navTo;
-  if(typeof _nav==='function') window.navTo=function(k){ var r=_nav.apply(this,arguments); if(k==='settings') paintSettings(); return r; };
-  function boot(){
-    paintLock();
-    var ov=document.getElementById('appLockOverlay');
-    if(get() && ov && ov.style.display!=='none'){ available().then(function(ok){ if(ok) setTimeout(function(){ bioUnlock(true); },650); }); }
-  }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
-})();
+<script>/* Face ID / fingerprint unlock was removed — clear anything an earlier version saved */
+try{ localStorage.removeItem('wmsoaBio_v1'); localStorage.removeItem('wmsoaBioNo_v1'); }catch(e){}
 </script>
 <div id="moreSheet" onclick="if(event.target===this)closeMoreSheet()"><div class="ms-card"><div class="ms-grab"></div><div class="ms-title">All tools</div><div class="ms-grid" id="msGrid"></div></div></div>
 <script>
