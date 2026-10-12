@@ -1044,7 +1044,9 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
 
 
 /* Salary certificate */
-.sc-page.pd-page{ --pd-acc:#a8742a; }
+.sc-page.pd-page{ --pd-acc:#a8742a; border-top:3mm solid #a8742a; }
+.sc-reg{ margin-top:9mm; font-size:11px; color:#2b2420; }
+.ps-conf{ display:inline-block; margin-top:2mm; padding:1mm 3mm; border:1px solid #a8742a; border-radius:3px; font-size:8px; font-weight:800; letter-spacing:.14em; color:#a8742a; }
 .sc-page .pd-title h1{ font-size:19px; letter-spacing:.12em; }
 .sc-to{ margin:8mm 0 4mm; font-size:11px; }
 .sc-to b{ font-size:12.5px; }
@@ -1054,7 +1056,22 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
 .sc-page table.pd-items{ margin-top:2mm; }
 .sc-note{ margin-top:7mm; font-size:10.5px; line-height:1.7; color:#2b2420; text-align:justify; }
 .sc-stamp{ border:1px dashed #b9ada0; border-radius:6px; height:30mm; display:flex; align-items:center; justify-content:center; color:#a2978b; font-size:9px; letter-spacing:.08em; text-transform:uppercase; }
+.sc-page .pd-sign{ display:block; } .sc-page .pd-sign > div{ width:55%; }
+.sc-page .sc-subject{ margin-top:6mm; }
 .sc-valid{ margin-top:6mm; font-size:8.8px; color:#7a7068; text-align:center; }
+
+.ps-box{ display:grid; grid-template-columns:repeat(3,1fr); border:1px solid var(--pd-rule); border-radius:6px; margin:5mm 0 6mm; overflow:hidden; }
+.ps-box > div{ padding:2.6mm 3.5mm; border-right:1px solid var(--pd-rule); border-bottom:1px solid var(--pd-rule); }
+.ps-box > div:nth-child(3n){ border-right:0; } .ps-box > div:nth-last-child(-n+3){ border-bottom:0; }
+.ps-box .k{ font-size:8px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:#a8742a; margin-bottom:1mm; }
+.ps-box .v{ font-size:11px; font-weight:700; color:#1f1a16; }
+.ps-cols{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; align-items:start; }
+.ps-net{ display:flex; justify-content:space-between; align-items:center; background:#a8742a; color:#fff; border-radius:6px; padding:4mm 5mm; margin-top:6mm; }
+.ps-net .l{ font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; } .ps-net .a{ font-size:19px; font-weight:800; }
+.ps-words{ margin-top:3mm; font-size:10.5px; color:#2b2420; } .ps-words b{ text-transform:uppercase; font-size:8.5px; letter-spacing:.09em; color:#a8742a; margin-right:2mm; }
+.ps-sig{ margin-top:18mm; width:55%; } .ps-sig .line{ border-bottom:1px solid #8a7f74; height:9mm; font-weight:700; font-size:11px; }
+.ps-sig .who{ margin-top:1.5mm; font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; } .ps-sig div.co{ font-size:9.5px; color:#5c534b; }
+.ps-auto{ margin-top:8mm; font-size:8.8px; color:#7a7068; text-align:center; }
 </style>
 </head>
 <body>
@@ -1814,7 +1831,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
         <button class="btn btn-ghost" onclick="printSalaryCert()">Print</button>
         <button class="btn btn-ghost" onclick="newSalaryCert()">＋ New Certificate</button>
         <button class="btn btn-outline-danger" onclick="clearSalaryCertForm()">Clear</button>
-        <label style="display:flex;align-items:center;gap:6px;margin:0 0 0 6px;text-transform:none;letter-spacing:0;font-size:12.5px;font-weight:700;"><input type="checkbox" id="scStamp" checked style="width:auto;min-height:0;"> signature &amp; stamp area</label>
+        <label style="display:flex;align-items:center;gap:6px;margin:0 0 0 6px;text-transform:none;letter-spacing:0;font-size:12.5px;font-weight:700;"><input type="checkbox" id="scStamp" checked style="width:auto;min-height:0;"> signature area</label>
         <span id="scStatus" style="font-size:12.5px;color:var(--ink-soft);align-self:center;"></span>
       </div>
       <div id="sc-preview-shell" style="display:none;margin-top:18px;">
@@ -1839,7 +1856,6 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
         <div><label for="psDate">Payment date</label><input type="date" id="psDate"></div>
         <div><label for="psDays">Days worked (optional)</label><input type="number" id="psDays" min="0" max="31" placeholder="e.g. 30"></div>
         <div><label for="psMode">Payment mode</label><select id="psMode"><option>Bank transfer</option><option>Cash</option><option>Cheque</option></select></div>
-        <div><label for="psRef">Reference no.</label><input type="text" id="psRef" placeholder="given when you generate"></div>
         <div><label for="psSigner">Prepared / approved by</label><input type="text" id="psSigner" placeholder="e.g. Ahmed Hassan"></div>
       </div>
       <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
@@ -1861,7 +1877,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
     </div>
     <div class="panel">
       <h2 class="step-h"><span>Saved pay sheets</span><span class="step-tip" id="psHistCount"></span></h2>
-      <input type="text" id="psHistSearch" placeholder="Search by employee, month or ref no…" oninput="renderPsHistory()" style="width:100%;margin-bottom:12px;">
+      <input type="text" id="psHistSearch" placeholder="Search by employee or month…" oninput="renderPsHistory()" style="width:100%;margin-bottom:12px;">
       <div id="psHistList"></div>
     </div>
   </div>
@@ -7269,7 +7285,7 @@ async function openDeliveryNote(id, download){
   fillDnForm(r); dnOpenedId = id;
   document.getElementById('dnPage').innerHTML = buildDeliveryNoteHTML(r);
   document.getElementById('dn-preview-shell').style.display = '';
-  document.getElementById('dnStatus').textContent = `Opened ${r.ref} — change anything and click Generate to save it again.`;
+  document.getElementById('dnStatus').textContent = `Opened pay sheet — change anything and click Generate to save it again.`;
   renderDnHistory();
   if(download) await downloadDeliveryNotePDF(); else document.getElementById('mainTab-delivery').scrollIntoView({ behavior: 'smooth' });
 }
@@ -7383,7 +7399,8 @@ function buildSalaryCertHTML(r){
   </div>
   <div class="sc-to">To: <b>${e(r.addressedTo || 'Whom It May Concern')}</b></div>
   <div class="sc-subject">Subject: Salary certificate — ${e(ttl)} ${e(r.name)}</div>
-  <p class="sc-p">This is to certify that <b>${e(ttl)} ${e(r.name)}</b>${ids ? ` (${ids})` : ''} has been employed with <b>Windmill Café And Roastery LLC SPC</b> since <b>${e(pdDate(r.joinDate))}</b> and is currently working as <b>${e(r.designation)}</b>. ${he} is still in our service as of the date of this certificate.</p>
+  <div class="ps-box">${[['Employee name', ttl + ' ' + r.name], ['Designation', r.designation], ['Date of joining', pdDate(r.joinDate)], ['Nationality', r.nationality], ['Passport no.', r.passport], ['Emirates ID', r.eid]].map(([k, v]) => `<div><div class="k">${k}</div><div class="v">${e(v || '—')}</div></div>`).join('')}</div>
+  <p class="sc-p">This is to certify that <b>${e(ttl)} ${e(r.name)}</b> has been employed with <b>Windmill Café And Roastery LLC SPC</b> since <b>${e(pdDate(r.joinDate))}</b> and is currently working as <b>${e(r.designation)}</b>. ${he} is still in our service as of the date of this certificate.</p>
   <p class="sc-p">${he} receives the following monthly salary:</p>
   <table class="pd-items"><thead><tr><th>#</th><th>Description</th><th class="num">Amount (AED)</th></tr></thead><tbody>${rowsHTML}</tbody></table>
   <div class="pd-sum">
@@ -7391,11 +7408,11 @@ function buildSalaryCertHTML(r){
     <table class="pd-totals"><tr class="grand"><td>TOTAL MONTHLY (AED)</td><td>${f(r.total)}</td></tr></table>
   </div>
   <div class="sc-note">This certificate is issued upon ${his} request${r.purpose ? ` for <b>${e(r.purpose)}</b>` : ''}, without any liability on the part of the company.</div>
-  ${r.stamp ? `<div class="pd-sign"><div><div class="line">${e(r.signer || '')}</div><div class="who">Authorised signatory</div><div>${e(r.signerTitle || '')}${r.signerTitle ? ' · ' : ''}Windmill Café And Roastery LLC SPC</div></div><div><div class="sc-stamp">Company stamp</div></div></div>` : ''}
+  ${r.stamp ? `<div class="sc-reg">Yours faithfully,</div><div class="pd-sign"><div><div class="line">${e(r.signer || '')}</div><div class="who">Authorised signatory</div><div>${e(r.signerTitle || '')}${r.signerTitle ? ' · ' : ''}Windmill Café And Roastery LLC SPC</div></div></div>` : ''}
   <div class="pd-foot"><div class="pd-foot-in">
     <div><div class="hd">Registered office</div>Windmill Café And Roastery LLC SPC<br>Al Ain, Abu Dhabi, UAE<br>TRN 105506837100003</div>
     <div><div class="hd">Contact</div>+971 55 563 0636 · +971 3 736 6902<br>www.windmillcr.ae</div>
-  </div><div class="sc-valid">This certificate is valid only with the company signature and stamp.</div></div>`;
+  </div><div class="sc-valid">This certificate is valid only with the authorised signature.</div></div>`;
 }
 async function generateSalaryCert(){
   const r = scRecordFromForm();
@@ -7526,30 +7543,29 @@ function psTotals(){
 function psRecordFromForm(){
   const v = id => document.getElementById(id).value.trim();
   const earn = psRows('psEarnBody'), ded = psRows('psDedBody');
-  return { ref: v('psRef'), name: v('psName'), designation: v('psDesig'), empId: v('psId'), month: v('psMonth'), date: document.getElementById('psDate').value || todayISO(),
+  return { name: v('psName'), designation: v('psDesig'), empId: v('psId'), month: v('psMonth'), date: document.getElementById('psDate').value || todayISO(),
     days: v('psDays'), mode: v('psMode'), signer: v('psSigner'), earn, ded, gross: psSum(earn), deductions: psSum(ded), net: Math.round((psSum(earn) - psSum(ded)) * 100) / 100 };
 }
 function psMonthLabel(m){ if(!/^\d{4}-\d{2}$/.test(m || '')) return m || ''; return new Date(+m.slice(0, 4), +m.slice(5) - 1, 1).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }); }
 function buildPaySheetHTML(r){
   const e = escapeHTML, f = formatAmount;
-  const tbl = (title, rows, tot, lbl) => `<table class="pd-items"><thead><tr><th>#</th><th>${title}</th><th class="num">Amount (AED)</th></tr></thead><tbody>${rows.length ? rows.map((x, i) => `<tr><td class="idx">${i + 1}</td><td class="desc">${e(x.desc)}</td><td class="num">${f(x.amount)}</td></tr>`).join('') : '<tr><td class="idx">–</td><td class="desc">None</td><td class="num">0.00</td></tr>'}<tr><td></td><td class="desc"><b>${lbl}</b></td><td class="num"><b>${f(tot)}</b></td></tr></tbody></table>`;
+  const tbl = (title, rows, tot, lbl) => `<table class="pd-items"><thead><tr><th>${title}</th><th class="num">AED</th></tr></thead><tbody>${rows.length ? rows.map(x => `<tr><td class="desc">${e(x.desc)}</td><td class="num">${f(x.amount)}</td></tr>`).join('') : '<tr><td class="desc">—</td><td class="num">0.00</td></tr>'}<tr><td class="desc"><b>${lbl}</b></td><td class="num"><b>${f(tot)}</b></td></tr></tbody></table>`;
+  const cell = (k, v) => `<div><div class="k">${k}</div><div class="v">${e(v || '—')}</div></div>`;
   return `
   <div class="pd-head">
     <div class="pd-brand"><img src="${CA_LOGO_DATA_URI}" alt="Windmill Café &amp; Roastery">
       <div><div class="pd-co">Windmill Café And Roastery LLC SPC</div>
       <div class="pd-co-sub">Al Ain, Abu Dhabi, United Arab Emirates<br>TRN 105506837100003<br>+971 55 563 0636 · +971 3 736 6902 · www.windmillcr.ae</div></div></div>
     <div class="pd-title"><h1>PAY SHEET</h1>
-      <table class="pd-meta"><tr><td class="k">Reference No.</td><td class="v">${e(r.ref)}</td></tr><tr><td class="k">Pay month</td><td class="v">${e(psMonthLabel(r.month))}</td></tr><tr><td class="k">Payment date</td><td class="v">${e(pdDate(r.date))}</td></tr></table></div>
+      <table class="pd-meta"><tr><td class="k">Pay period</td><td class="v">${e(psMonthLabel(r.month))}</td></tr></table><div class="ps-conf">CONFIDENTIAL</div></div>
   </div>
-  <div class="sc-subject">Employee: ${e(r.name)}${r.designation ? ' — ' + e(r.designation) : ''}</div>
-  <p class="sc-p">${r.empId ? `ID / Passport: <b>${e(r.empId)}</b>. ` : ''}${r.days ? `Days worked: <b>${e(r.days)}</b>. ` : ''}Payment mode: <b>${e(r.mode)}</b>.</p>
-  ${tbl('Earnings', r.earn, r.gross, 'Total earnings')}
-  ${tbl('Deductions', r.ded, r.deductions, 'Total deductions')}
-  <div class="pd-sum">
-    <div class="pd-words"><div class="pd-lbl">Net pay in words</div><div class="w">${amountInWordsAED(r.net)}</div></div>
-    <table class="pd-totals"><tr class="grand"><td>NET PAY (AED)</td><td>${f(r.net)}</td></tr></table>
-  </div>
-  <div class="pd-sign"><div><div class="line">${e(r.signer || '')}</div><div class="who">Prepared / approved by</div><div>Windmill Café And Roastery LLC SPC</div></div><div><div class="line">&nbsp;</div><div class="who">Employee signature</div><div>${e(r.name)}</div></div></div>
+  <div class="sc-subject">Salary statement for the month of ${e(psMonthLabel(r.month))}</div>
+  <div class="ps-box">${cell('Employee name', r.name)}${cell('Designation', r.designation)}${cell('ID / Passport', r.empId)}${cell('Days worked', r.days)}${cell('Payment mode', r.mode)}${cell('Payment date', pdDate(r.date))}</div>
+  <div class="ps-cols"><div>${tbl('Earnings', r.earn, r.gross, 'Total earnings')}</div><div>${tbl('Deductions', r.ded, r.deductions, 'Total deductions')}</div></div>
+  <div class="ps-net"><div class="l">Net pay</div><div class="a">AED ${f(r.net)}</div></div>
+  <div class="ps-words"><b>In words</b>${amountInWordsAED(r.net)}</div>
+  <div class="ps-sig"><div class="line">${e(r.signer || '')}</div><div class="who">Authorised signatory</div><div class="co">Windmill Café And Roastery LLC SPC</div></div>
+  <div class="ps-auto">This is a computer-generated document. It is strictly confidential and intended solely for the employee named above.</div>
   <div class="pd-foot"><div class="pd-foot-in">
     <div><div class="hd">Registered office</div>Windmill Café And Roastery LLC SPC<br>Al Ain, Abu Dhabi, UAE<br>TRN 105506837100003</div>
     <div><div class="hd">Contact</div>+971 55 563 0636 · +971 3 736 6902<br>www.windmillcr.ae</div>
@@ -7560,13 +7576,12 @@ async function generatePaySheet(){
   if(!r.name){ alert('Please enter the employee name.'); document.getElementById('psName').focus(); return false; }
   if(!r.month){ alert('Please choose the pay month.'); document.getElementById('psMonth').focus(); return false; }
   if(!r.earn.length){ alert('Add at least one earning with an amount.'); return false; }
-  if(!r.ref) r.ref = nextPsRef(); document.getElementById('psRef').value = r.ref;
-  const id = quoteId(r.ref), map = loadPss();
+  const map = loadPss(), id = psOpenedId || ('ps-' + Date.now());
   r.id = id; r.createdAt = (map[id] && map[id].createdAt) || Date.now(); r.updatedAt = Date.now();
   map[id] = r; savePss(map); psOpenedId = id;
   document.getElementById('psPage').innerHTML = buildPaySheetHTML(r);
   document.getElementById('ps-preview-shell').style.display = '';
-  document.getElementById('psStatus').textContent = `✓ ${r.ref} saved`;
+  document.getElementById('psStatus').textContent = '✓ Pay sheet saved';
   renderPsHistory(); return true;
 }
 async function downloadPaySheetPDF(){
@@ -7575,9 +7590,9 @@ async function downloadPaySheetPDF(){
   const st = document.getElementById('psStatus'); st.textContent = 'Preparing PDF…';
   try{
     const { jsPDF } = window.jspdf; const pdf = new jsPDF('p', 'mm', 'a4');
-    await elementToPdfPages(pdf, document.getElementById('psPage'), { cutSel: 'tr, table, p, .sc-subject, .pd-head, .pd-sum, .pd-sign, .pd-foot' });
+    await elementToPdfPages(pdf, document.getElementById('psPage'), { cutSel: 'tr, table, p, .ps-box, .ps-cols, .ps-net, .ps-words, .ps-sig, .pd-head, .pd-foot' });
     const r = loadPss()[psOpenedId], blob = pdf.output('blob'), url = URL.createObjectURL(blob), a = document.createElement('a');
-    a.href = url; a.download = `${r.ref}_Pay-Sheet_${sanitizeFilename(r.name)}_${r.month}.pdf`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    a.href = url; a.download = `Pay-Sheet_${sanitizeFilename(r.name)}_${r.month}.pdf`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     st.textContent = 'Done — PDF downloaded.';
   } catch(e){ st.textContent = 'Failed: ' + (e.message || e); }
 }
@@ -7589,7 +7604,7 @@ async function printPaySheet(){
 function psDefaultRows(){ ['Basic Salary', 'Housing Allowance', 'Transport Allowance'].forEach(d => addPsRow('E', { desc: d })); ['Advance', 'Absence / Leave deduction'].forEach(d => addPsRow('D', { desc: d })); }
 function fillPsForm(r){
   const set = (id, v) => { document.getElementById(id).value = v == null ? '' : v; };
-  set('psName', r.name); set('psDesig', r.designation); set('psId', r.empId); set('psMonth', r.month); set('psDate', r.date || todayISO()); set('psDays', r.days); set('psMode', r.mode || 'Bank transfer'); set('psRef', r.ref); set('psSigner', r.signer);
+  set('psName', r.name); set('psDesig', r.designation); set('psId', r.empId); set('psMonth', r.month); set('psDate', r.date || todayISO()); set('psDays', r.days); set('psMode', r.mode || 'Bank transfer'); set('psSigner', r.signer);
   document.getElementById('psEarnBody').innerHTML = ''; document.getElementById('psDedBody').innerHTML = '';
   if((r.earn || []).length || (r.ded || []).length){ (r.earn || []).forEach(x => addPsRow('E', x)); (r.ded || []).forEach(x => addPsRow('D', x)); } else psDefaultRows();
   psTotals();
@@ -7598,7 +7613,6 @@ function newPaySheet(){
   psOpenedId = null;
   const sg = (() => { try{ return JSON.parse(localStorage.getItem('windmillSalaryCertSigner_v1') || 'null') || {}; } catch(e){ return {}; } })();
   fillPsForm({ date: todayISO(), month: todayISO().slice(0, 7), signer: sg.name || '' });
-  document.getElementById('psRef').placeholder = `Next: ${psPeek()} (given when you generate)`;
   document.getElementById('ps-preview-shell').style.display = 'none'; document.getElementById('psStatus').textContent = '';
   renderPsHistory(); document.getElementById('psName').focus();
 }
@@ -7612,18 +7626,18 @@ async function openPaySheet(id, download){
   if(download) await downloadPaySheetPDF(); else document.getElementById('mainTab-paysheet').scrollIntoView({ behavior: 'smooth' });
 }
 function deletePaySheet(id){
-  const m = loadPss(), r = m[id]; if(!r || !confirm(`Delete pay sheet ${r.ref} for "${r.name}"?`)) return;
+  const m = loadPss(), r = m[id]; if(!r || !confirm(`Delete the pay sheet for "${r.name}"?`)) return;
   delete m[id]; savePss(m); if(psOpenedId === id) psOpenedId = null; renderPsHistory();
 }
 function renderPsHistory(){
   const box = document.getElementById('psHistList'); if(!box) return;
   const q = (document.getElementById('psHistSearch').value || '').trim().toLowerCase();
   const all = Object.values(loadPss());
-  const list = all.filter(r => !q || [r.name, r.ref, r.month, r.designation].some(v => (v || '').toLowerCase().includes(q))).sort((a, b) => (b.month || '').localeCompare(a.month || '') || (b.updatedAt || 0) - (a.updatedAt || 0));
+  const list = all.filter(r => !q || [r.name, r.month, r.designation].some(v => (v || '').toLowerCase().includes(q))).sort((a, b) => (b.month || '').localeCompare(a.month || '') || (b.updatedAt || 0) - (a.updatedAt || 0));
   document.getElementById('psHistCount').textContent = all.length ? `${all.length} saved` : '';
   if(!list.length){ box.innerHTML = `<div class="empty-note">${all.length ? 'Nothing matches your search.' : 'No pay sheets yet — every one you generate is saved here.'}</div>`; return; }
-  box.innerHTML = `<div class="qh-wrap"><table class="qh-table"><thead><tr><th>Ref</th><th>Month</th><th>Employee</th><th>Designation</th><th class="num">Net (AED)</th><th></th></tr></thead><tbody>` +
-    list.slice(0, 300).map(r => `<tr class="${r.id === psOpenedId ? 'on' : ''}"><td class="ref">${escapeHTML(r.ref)}</td><td>${escapeHTML(psMonthLabel(r.month))}</td><td class="cust">${escapeHTML(r.name || '')}</td><td>${escapeHTML(r.designation || '')}</td><td class="num">${formatAmount(Number(r.net) || 0)}</td>
+  box.innerHTML = `<div class="qh-wrap"><table class="qh-table"><thead><tr><th>Month</th><th>Employee</th><th>Designation</th><th class="num">Net (AED)</th><th></th></tr></thead><tbody>` +
+    list.slice(0, 300).map(r => `<tr class="${r.id === psOpenedId ? 'on' : ''}"><td>${escapeHTML(psMonthLabel(r.month))}</td><td class="cust">${escapeHTML(r.name || '')}</td><td>${escapeHTML(r.designation || '')}</td><td class="num">${formatAmount(Number(r.net) || 0)}</td>
       <td class="acts"><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openPaySheet(this.dataset.id)">Open</button><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openPaySheet(this.dataset.id, true)">PDF</button><button class="btn btn-outline-danger btn-xs" data-id="${escapeAttr(r.id)}" onclick="deletePaySheet(this.dataset.id)" title="Delete">✕</button></td></tr>`).join('') + `</tbody></table></div>`;
 }
 function initPaySheet(){
