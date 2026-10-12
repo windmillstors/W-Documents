@@ -1854,8 +1854,8 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
         <div><label for="psDesig">Designation</label><input type="text" id="psDesig" placeholder="e.g. Barista"></div>
         <div><label for="psId">Passport / Emirates ID (optional)</label><input type="text" id="psId"></div>
         <div><label for="psMonth">Pay month</label><input type="month" id="psMonth"></div>
-        <div><label for="psDate">Payment date</label><input type="date" id="psDate"></div>
-        <div><label for="psDays">Days worked (optional)</label><input type="number" id="psDays" min="0" max="31" placeholder="e.g. 30"></div>
+        <div style="display:none;"><label for="psDate">Payment date</label><input type="date" id="psDate"></div>
+        <div style="display:none;"><label for="psDays">Days worked (optional)</label><input type="number" id="psDays" min="0" max="31" placeholder="e.g. 30"></div>
         <div><label for="psMode">Payment mode</label><select id="psMode" onchange="psToggleBank()"><option>Bank transfer</option><option>Cash</option><option>Cheque</option></select></div>
         <div><label for="psSigner">Signed by (name)</label><input type="text" id="psSigner" placeholder="e.g. Muhsin Musthafa C K"></div>
         <div><label for="psSignerTitle">Signatory title</label><input type="text" id="psSignerTitle" value="Manager" placeholder="e.g. Manager"></div>
@@ -7570,7 +7570,7 @@ function buildPaySheetHTML(r){
       <table class="pd-meta"><tr><td class="k">Pay period</td><td class="v">${e(psMonthLabel(r.month))}</td></tr></table><div class="ps-conf">CONFIDENTIAL</div></div>
   </div>
   <div class="sc-subject">Salary statement for the month of ${e(psMonthLabel(r.month))}</div>
-  <div class="ps-box">${cell('Employee name', r.name)}${cell('Designation', r.designation)}${cell('ID / Passport', r.empId)}${cell('Days worked', r.days)}${cell('Payment mode', r.mode)}${cell('Payment date', pdDate(r.date))}</div>
+  <div class="ps-box">${cell('Employee name', r.name)}${cell('Designation', r.designation)}${cell('ID / Passport', r.empId)}</div>
   <div class="ps-cols"><div>${tbl('Earnings', r.earn, r.gross, 'Total earnings')}</div><div>${tbl('Deductions', r.ded, r.deductions, 'Total deductions')}</div></div>
   <div class="ps-net"><div class="l">Net pay</div><div class="a">AED ${f(r.net)}</div></div>
   <div class="ps-words"><b>In words</b>${amountInWordsAED(r.net)}</div>
