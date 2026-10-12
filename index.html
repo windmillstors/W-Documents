@@ -1042,6 +1042,19 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
 @keyframes spRun{0%{left:-40%}100%{left:100%}}
 @media (prefers-reduced-motion:reduce){#wmSplash *{animation:none!important}}
 
+
+/* Salary certificate */
+.sc-page.pd-page{ --pd-acc:#a8742a; }
+.sc-page .pd-title h1{ font-size:19px; letter-spacing:.12em; }
+.sc-to{ margin:8mm 0 4mm; font-size:11px; }
+.sc-to b{ font-size:12.5px; }
+.sc-subject{ margin:0 0 5mm; font-size:11.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--pd-dark); border-bottom:1px solid var(--pd-rule); padding-bottom:3mm; }
+.sc-p{ font-size:11px; line-height:1.75; color:#2b2420; margin:0 0 4mm; text-align:justify; }
+.sc-p b{ color:#1f1a16; }
+.sc-page table.pd-items{ margin-top:2mm; }
+.sc-note{ margin-top:7mm; font-size:10.5px; line-height:1.7; color:#2b2420; text-align:justify; }
+.sc-stamp{ border:1px dashed #b9ada0; border-radius:6px; height:30mm; display:flex; align-items:center; justify-content:center; color:#a2978b; font-size:9px; letter-spacing:.08em; text-transform:uppercase; }
+.sc-valid{ margin-top:6mm; font-size:8.8px; color:#7a7068; text-align:center; }
 </style>
 </head>
 <body>
@@ -1070,6 +1083,8 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
   <button class="rail-btn" data-nav="branchsales" onclick="navTo('branchsales')" title="Branch sales" aria-label="Branch sales"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l2-6h14l2 6"/><path d="M4 10v10h16V10"/><path d="M9 20v-6h6v6"/></svg><span>Branches</span></button>
   <button class="rail-btn" data-nav="quotation" onclick="navTo('quotation')" title="Quotation" aria-label="Quotation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span>Quote</span></button>
   <button class="rail-btn" data-nav="delivery" onclick="navTo('delivery')" title="Delivery Note" aria-label="Delivery Note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="6" width="13" height="10" rx="1.5"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg><span>Delivery</span></button>
+  <button class="rail-btn" data-nav="salarycert" onclick="navTo('salarycert')" title="Salary Certificate" aria-label="Salary Certificate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><circle cx="12.5" cy="14" r="2.6"/><path d="M11 17.5l-.8 3 2.3-1.2 2.3 1.2-.8-3"/></svg><span>Salary Cert</span></button>
+  <button class="rail-btn" data-nav="paysheet" onclick="navTo('paysheet')" title="Pay Sheet" aria-label="Pay Sheet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Pay Sheet</span></button>
   <button class="rail-btn" data-nav="creditagreement" onclick="navTo('creditagreement')" title="Credit agreement" aria-label="Credit agreement"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16z"/><path d="M13 7l4 4"/></svg><span>Agreement</span></button>
   <button class="rail-btn" data-nav="pcsummary" onclick="navTo('pcsummary')" title="Petty cash" aria-label="Petty cash"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16" cy="14.5" r="1.3"/></svg><span>Petty Cash</span></button>
   <button class="rail-btn" data-nav="customers" onclick="navTo('customers')" title="Customers" aria-label="Customers"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 11a3 3 0 100-6"/><path d="M18 20c0-2.4-1-4.4-2.6-5.4"/></svg><span>Customers</span></button>
@@ -1093,6 +1108,8 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
     <div class="home-actions">
       <button class="btn btn-coffee" onclick="navTo('statement')">＋ New SOA</button>
       <button class="btn btn-gold" onclick="navTo('quotation'); newQuotation();">＋ New Quotation</button>
+      <button class="btn btn-ghost" onclick="navTo('salarycert'); newSalaryCert();">＋ Salary Certificate</button>
+      <button class="btn btn-ghost" onclick="navTo('paysheet'); newPaySheet();">＋ Pay Sheet</button>
       <button class="btn btn-ghost" onclick="navTo('analytics')">Paste payments</button>
       <button class="btn btn-ghost" onclick="navTo('branchsales')">Branch sales</button>
       <button class="btn btn-ghost" onclick="navTo('customers')">Customers</button>
@@ -1760,6 +1777,92 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
       <h2 class="step-h"><span>Saved delivery notes</span><span class="step-tip" id="dnHistCount"></span></h2>
       <input type="text" id="dnHistSearch" placeholder="Search by customer, branch or ref no…" oninput="renderDnHistory()" style="width:100%;margin-bottom:12px;">
       <div id="dnHistList"></div>
+    </div>
+  </div>
+
+  <div id="mainTab-salarycert" class="main-tab-panel" style="display:none;">
+    <div class="panel">
+      <h2 class="step-h"><span>Salary certificate</span><span class="step-tip">For Windmill Café And Roastery staff</span></h2>
+      <div class="cust-grid">
+        <div class="span2"><label for="scName">Employee full name</label><input type="text" id="scName" placeholder="e.g. Mohammed Ali"></div>
+        <div><label for="scGender">Title</label><select id="scGender"><option value="M">Mr. (he / his)</option><option value="F">Ms. (she / her)</option></select></div>
+        <div><label for="scNat">Nationality</label><input type="text" id="scNat" placeholder="e.g. Sri Lankan"></div>
+        <div><label for="scPassport">Passport no.</label><input type="text" id="scPassport" placeholder="e.g. N1234567"></div>
+        <div><label for="scEid">Emirates ID (optional)</label><input type="text" id="scEid" placeholder="784-XXXX-XXXXXXX-X"></div>
+        <div><label for="scDesig">Designation / job title</label><input type="text" id="scDesig" placeholder="e.g. Barista"></div>
+        <div><label for="scJoin">Date of joining</label><input type="date" id="scJoin"></div>
+        <div class="span2"><label for="scTo">Addressed to</label><input type="text" id="scTo" value="Whom It May Concern" placeholder="e.g. The Manager, ADCB Bank"></div>
+        <div class="span2"><label for="scPurpose">Purpose (optional — shown in the letter)</label><input type="text" id="scPurpose" placeholder="e.g. bank account opening / visa application"></div>
+        <div><label for="scRef">Reference no.</label><input type="text" id="scRef" placeholder="given when you generate"></div>
+        <div><label for="scDate">Issue date</label><input type="date" id="scDate"></div>
+        <div><label for="scSigner">Signatory name</label><input type="text" id="scSigner" placeholder="e.g. Ahmed Hassan"></div>
+        <div><label for="scSignerTitle">Signatory title</label><input type="text" id="scSignerTitle" value="Manager" placeholder="e.g. General Manager"></div>
+      </div>
+      <div style="margin-top:16px;">
+        <table class="rows-table">
+          <thead><tr><th class="act">Salary component</th><th class="amt" style="width:26%;">Monthly amount (AED)</th><th></th></tr></thead>
+          <tbody id="scRowsBody"></tbody>
+        </table>
+        <div class="actions-row">
+          <button class="btn btn-ghost" onclick="addScRow()">+ Add Component</button>
+          <span id="scRunningTotal" style="font-size:13px;color:var(--ink-soft);"></span>
+        </div>
+      </div>
+      <div class="toolbar" style="margin-top:14px;margin-bottom:0;">
+        <button class="btn btn-gold" onclick="generateSalaryCert()">Generate &amp; Save</button>
+        <button class="btn btn-coffee" onclick="downloadSalaryCertPDF()">Download PDF</button>
+        <button class="btn btn-ghost" onclick="printSalaryCert()">Print</button>
+        <button class="btn btn-ghost" onclick="newSalaryCert()">＋ New Certificate</button>
+        <button class="btn btn-outline-danger" onclick="clearSalaryCertForm()">Clear</button>
+        <label style="display:flex;align-items:center;gap:6px;margin:0 0 0 6px;text-transform:none;letter-spacing:0;font-size:12.5px;font-weight:700;"><input type="checkbox" id="scStamp" checked style="width:auto;min-height:0;"> signature &amp; stamp area</label>
+        <span id="scStatus" style="font-size:12.5px;color:var(--ink-soft);align-self:center;"></span>
+      </div>
+      <div id="sc-preview-shell" style="display:none;margin-top:18px;">
+        <div class="q-a4-page sc-page pd-page" id="scPage"></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2 class="step-h"><span>Saved salary certificates</span><span class="step-tip" id="scHistCount"></span></h2>
+      <input type="text" id="scHistSearch" placeholder="Search by employee, designation or ref no…" oninput="renderScHistory()" style="width:100%;margin-bottom:12px;">
+      <div id="scHistList"></div>
+    </div>
+  </div>
+
+  <div id="mainTab-paysheet" class="main-tab-panel" style="display:none;">
+    <div class="panel">
+      <h2 class="step-h"><span>Pay sheet</span><span class="step-tip">Monthly payslip for Windmill Café And Roastery staff</span></h2>
+      <div class="cust-grid">
+        <div class="span2"><label for="psName">Employee full name</label><input type="text" id="psName" placeholder="e.g. Mohammed Ali"></div>
+        <div><label for="psDesig">Designation</label><input type="text" id="psDesig" placeholder="e.g. Barista"></div>
+        <div><label for="psId">Passport / Emirates ID (optional)</label><input type="text" id="psId"></div>
+        <div><label for="psMonth">Pay month</label><input type="month" id="psMonth"></div>
+        <div><label for="psDate">Payment date</label><input type="date" id="psDate"></div>
+        <div><label for="psDays">Days worked (optional)</label><input type="number" id="psDays" min="0" max="31" placeholder="e.g. 30"></div>
+        <div><label for="psMode">Payment mode</label><select id="psMode"><option>Bank transfer</option><option>Cash</option><option>Cheque</option></select></div>
+        <div><label for="psRef">Reference no.</label><input type="text" id="psRef" placeholder="given when you generate"></div>
+        <div><label for="psSigner">Prepared / approved by</label><input type="text" id="psSigner" placeholder="e.g. Ahmed Hassan"></div>
+      </div>
+      <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+        <div><table class="rows-table"><thead><tr><th class="act">Earnings</th><th class="amt" style="width:30%;">AED</th><th></th></tr></thead><tbody id="psEarnBody"></tbody></table>
+          <div class="actions-row"><button class="btn btn-ghost" onclick="addPsRow('E')">+ Add Earning</button></div></div>
+        <div><table class="rows-table"><thead><tr><th class="act">Deductions</th><th class="amt" style="width:30%;">AED</th><th></th></tr></thead><tbody id="psDedBody"></tbody></table>
+          <div class="actions-row"><button class="btn btn-ghost" onclick="addPsRow('D')">+ Add Deduction</button></div></div>
+      </div>
+      <div id="psRunningTotal" style="margin-top:10px;font-size:13px;color:var(--ink-soft);"></div>
+      <div class="toolbar" style="margin-top:14px;margin-bottom:0;">
+        <button class="btn btn-gold" onclick="generatePaySheet()">Generate &amp; Save</button>
+        <button class="btn btn-coffee" onclick="downloadPaySheetPDF()">Download PDF</button>
+        <button class="btn btn-ghost" onclick="printPaySheet()">Print</button>
+        <button class="btn btn-ghost" onclick="newPaySheet()">＋ New Pay Sheet</button>
+        <button class="btn btn-outline-danger" onclick="if(confirm('Clear the form?')) newPaySheet()">Clear</button>
+        <span id="psStatus" style="font-size:12.5px;color:var(--ink-soft);align-self:center;"></span>
+      </div>
+      <div id="ps-preview-shell" style="display:none;margin-top:18px;"><div class="q-a4-page sc-page pd-page" id="psPage"></div></div>
+    </div>
+    <div class="panel">
+      <h2 class="step-h"><span>Saved pay sheets</span><span class="step-tip" id="psHistCount"></span></h2>
+      <input type="text" id="psHistSearch" placeholder="Search by employee, month or ref no…" oninput="renderPsHistory()" style="width:100%;margin-bottom:12px;">
+      <div id="psHistList"></div>
     </div>
   </div>
 
@@ -3220,6 +3323,8 @@ const NAV_INFO = {
   branchsales:    ['Branch Sales', 'Daily Cash, Card & Beanz for every branch'],
   quotation:      ['Quotation', 'Make a quotation — every quotation is saved and can be opened again'],
   delivery:       ['Delivery Note', 'Make a delivery note — or start from a saved quotation. Every note is saved'],
+  salarycert:     ['Salary Certificate', 'Make a salary certificate for a Windmill employee — every certificate is saved'],
+  paysheet:       ['Pay Sheet', 'Make a monthly pay sheet (payslip) for an employee — every pay sheet is saved'],
   creditagreement:['Credit Agreement', 'Fill in the customer and download the agreement'],
   pcsummary:      ['Petty Cash Book', 'Paste the month from Excel — it is sorted by category with totals'],
   settings:       ['Settings', 'Client address book, backup & restore']
@@ -3243,6 +3348,8 @@ function navTo(key){
   if(key === 'branchsales') renderBranchCharts();
   if(key === 'pcsummary') initPettyCashBook();
   if(key === 'delivery') initDeliveryNote();
+  if(key === 'salarycert') initSalaryCert();
+  if(key === 'paysheet') initPaySheet();
   document.querySelectorAll('.rail-btn').forEach(b => b.classList.toggle('active', b.dataset.nav === key));
   document.getElementById('pageTitle').textContent = NAV_INFO[key][0];
   document.getElementById('pageSub').textContent = NAV_INFO[key][1];
@@ -7210,6 +7317,319 @@ function initDeliveryNote(){
   el.addEventListener('change', fill); el.addEventListener('input', fill);
   document.getElementById('dnTax').addEventListener('input', dnTotals);
 })();
+
+
+/* ══════════════════ SALARY CERTIFICATE (Windmill staff; same look as quotation / delivery note; saved + synced like them) ══════════════════ */
+const SC_KEY = 'windmillSalaryCerts_v1';
+const SC_SIGNER_KEY = 'windmillSalaryCertSigner_v1';
+let scOpenedId = null;
+function loadScs(){ try{ return JSON.parse(localStorage.getItem(SC_KEY) || '{}') || {}; } catch(e){ return {}; } }
+function saveScs(m){ localStorage.setItem(SC_KEY, JSON.stringify(m)); }
+function scPeek(){ return `SC-${String((parseInt(localStorage.getItem('wmdev_scCounter') || '0', 10) || 0) + 1).padStart(4, '0')}`; }
+async function nextScRef(){
+  const used = Object.values(loadScs()).reduce((m, r) => { const n = parseInt(String(r && r.ref || '').replace(/\D/g, ''), 10); return n > m ? n : m; }, 0);
+  const localN = Math.max(parseInt(localStorage.getItem('wmdev_scCounter') || '0', 10) || 0, used);
+  let n = localN + 1;
+  if(cloud.on && cloud.connected){
+    try{
+      const res = await Promise.race([cloud.base.child('counters/salaryCert').transaction(cur => Math.max(Number(cur) || 0, localN) + 1), new Promise((_, r) => setTimeout(() => r(new Error('timeout')), 6000))]);
+      if(res && res.committed) n = Number(res.snapshot.val()) || n;
+    } catch(e){}
+  }
+  try{ localStorage.setItem('wmdev_scCounter', String(n)); } catch(e){}
+  return `SC-${String(n).padStart(4, '0')}`;
+}
+function addScRow(r){
+  r = r || {};
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td class="act"><input type="text" class="sc-desc" placeholder="e.g. Basic Salary" value="${escapeAttr(r.desc || '')}"></td>
+    <td class="amt"><input type="number" class="sc-amt" min="0" step="0.01" placeholder="0.00" value="${escapeAttr(r.amount != null && r.amount !== '' ? r.amount : '')}"></td>
+    <td class="remove-cell"><button class="remove-btn" onclick="this.closest('tr').remove(); scTotals();" title="Remove row">&times;</button></td>`;
+  document.getElementById('scRowsBody').appendChild(tr);
+  tr.querySelector('.sc-amt').addEventListener('input', scTotals);
+  scTotals();
+}
+function scRows(){
+  return [...document.querySelectorAll('#scRowsBody tr')].map(tr => ({ desc: tr.querySelector('.sc-desc').value.trim(), amount: parseFloat(tr.querySelector('.sc-amt').value) || 0 }))
+    .filter(r => r.desc && r.amount > 0);
+}
+function scTotals(){
+  let t = 0; document.querySelectorAll('#scRowsBody .sc-amt').forEach(i => { t += parseFloat(i.value) || 0; });
+  const el = document.getElementById('scRunningTotal'); if(el) el.textContent = `Total monthly salary: AED ${formatAmount(t)}`;
+}
+function scRecordFromForm(){
+  const v = id => document.getElementById(id).value.trim();
+  const rows = scRows();
+  return {
+    ref: v('scRef'), date: document.getElementById('scDate').value || todayISO(),
+    name: v('scName'), gender: document.getElementById('scGender').value, nationality: v('scNat'), passport: v('scPassport'), eid: v('scEid'),
+    designation: v('scDesig'), joinDate: document.getElementById('scJoin').value, addressedTo: v('scTo') || 'Whom It May Concern', purpose: v('scPurpose'),
+    signer: v('scSigner'), signerTitle: v('scSignerTitle'), stamp: document.getElementById('scStamp').checked,
+    rows, total: Math.round(rows.reduce((a, r) => a + r.amount, 0) * 100) / 100
+  };
+}
+function buildSalaryCertHTML(r){
+  const e = escapeHTML, f = formatAmount;
+  const F = r.gender === 'F', he = F ? 'She' : 'He', his = F ? 'her' : 'his', ttl = F ? 'Ms.' : 'Mr.';
+  const ids = [r.nationality ? `Nationality: ${e(r.nationality)}` : '', r.passport ? `Passport No.: ${e(r.passport)}` : '', r.eid ? `Emirates ID: ${e(r.eid)}` : ''].filter(Boolean).join('; ');
+  const rowsHTML = (r.rows || []).map((x, i) => `<tr><td class="idx">${i + 1}</td><td class="desc">${e(x.desc)}</td><td class="num">${f(x.amount)}</td></tr>`).join('');
+  return `
+  <div class="pd-head">
+    <div class="pd-brand"><img src="${CA_LOGO_DATA_URI}" alt="Windmill Café &amp; Roastery">
+      <div><div class="pd-co">Windmill Café And Roastery LLC SPC</div>
+      <div class="pd-co-sub">Al Ain, Abu Dhabi, United Arab Emirates<br>TRN 105506837100003<br>+971 55 563 0636 · +971 3 736 6902 · www.windmillcr.ae</div></div></div>
+    <div class="pd-title"><h1>SALARY CERTIFICATE</h1>
+      <table class="pd-meta"><tr><td class="k">Reference No.</td><td class="v">${e(r.ref)}</td></tr><tr><td class="k">Date</td><td class="v">${e(pdDate(r.date))}</td></tr></table></div>
+  </div>
+  <div class="sc-to">To: <b>${e(r.addressedTo || 'Whom It May Concern')}</b></div>
+  <div class="sc-subject">Subject: Salary certificate — ${e(ttl)} ${e(r.name)}</div>
+  <p class="sc-p">This is to certify that <b>${e(ttl)} ${e(r.name)}</b>${ids ? ` (${ids})` : ''} has been employed with <b>Windmill Café And Roastery LLC SPC</b> since <b>${e(pdDate(r.joinDate))}</b> and is currently working as <b>${e(r.designation)}</b>. ${he} is still in our service as of the date of this certificate.</p>
+  <p class="sc-p">${he} receives the following monthly salary:</p>
+  <table class="pd-items"><thead><tr><th>#</th><th>Description</th><th class="num">Amount (AED)</th></tr></thead><tbody>${rowsHTML}</tbody></table>
+  <div class="pd-sum">
+    <div class="pd-words"><div class="pd-lbl">Total monthly salary in words</div><div class="w">${amountInWordsAED(r.total)}</div></div>
+    <table class="pd-totals"><tr class="grand"><td>TOTAL MONTHLY (AED)</td><td>${f(r.total)}</td></tr></table>
+  </div>
+  <div class="sc-note">This certificate is issued upon ${his} request${r.purpose ? ` for <b>${e(r.purpose)}</b>` : ''}, without any liability on the part of the company.</div>
+  ${r.stamp ? `<div class="pd-sign"><div><div class="line">${e(r.signer || '')}</div><div class="who">Authorised signatory</div><div>${e(r.signerTitle || '')}${r.signerTitle ? ' · ' : ''}Windmill Café And Roastery LLC SPC</div></div><div><div class="sc-stamp">Company stamp</div></div></div>` : ''}
+  <div class="pd-foot"><div class="pd-foot-in">
+    <div><div class="hd">Registered office</div>Windmill Café And Roastery LLC SPC<br>Al Ain, Abu Dhabi, UAE<br>TRN 105506837100003</div>
+    <div><div class="hd">Contact</div>+971 55 563 0636 · +971 3 736 6902<br>www.windmillcr.ae</div>
+  </div><div class="sc-valid">This certificate is valid only with the company signature and stamp.</div></div>`;
+}
+async function generateSalaryCert(){
+  const r = scRecordFromForm();
+  if(!r.name){ alert('Please enter the employee name.'); document.getElementById('scName').focus(); return false; }
+  if(!r.designation){ alert('Please enter the designation / job title.'); document.getElementById('scDesig').focus(); return false; }
+  if(!r.joinDate){ alert('Please enter the date of joining.'); document.getElementById('scJoin').focus(); return false; }
+  if(!r.rows.length){ alert('Add at least one salary component with an amount.'); return false; }
+  if(!r.ref){ r.ref = await nextScRef(); document.getElementById('scRef').value = r.ref; }
+  const id = quoteId(r.ref);
+  const map = loadScs();
+  if(map[id] && !map[id].deleted && scOpenedId !== id && (map[id].name || '').toLowerCase() !== r.name.toLowerCase()
+     && !confirm(`${r.ref} is already saved for "${map[id].name}". Replace it?`)) return false;
+  r.id = id; r.createdAt = (map[id] && !map[id].deleted && map[id].createdAt) || Date.now(); r.updatedAt = Date.now();
+  map[id] = r; saveScs(map); scOpenedId = id;
+  try{ localStorage.setItem(SC_SIGNER_KEY, JSON.stringify({ name: r.signer, title: r.signerTitle })); } catch(e){}
+  document.getElementById('scPage').innerHTML = buildSalaryCertHTML(r);
+  document.getElementById('sc-preview-shell').style.display = '';
+  document.getElementById('scStatus').textContent = `✓ ${r.ref} saved`;
+  renderScHistory();
+  return true;
+}
+async function downloadSalaryCertPDF(){
+  if(!(await generateSalaryCert())) return;
+  await sleep(80);
+  const st = document.getElementById('scStatus'); st.textContent = 'Preparing PDF…';
+  try{
+    const { jsPDF } = window.jspdf; const pdf = new jsPDF('p', 'mm', 'a4');
+    await elementToPdfPages(pdf, document.getElementById('scPage'), { cutSel: 'tr, table, p, .sc-to, .sc-subject, .sc-note, .pd-head, .pd-sum, .pd-sign, .pd-foot' });
+    const r = loadScs()[scOpenedId];
+    const blob = pdf.output('blob'), url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = `${r.ref}_Salary-Certificate_${sanitizeFilename(r.name)}_${r.date}.pdf`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    st.textContent = 'Done — PDF downloaded.';
+  } catch(e){ st.textContent = 'Failed: ' + (e.message || e); }
+}
+async function printSalaryCert(){
+  if(!(await generateSalaryCert())) return;
+  const root = document.getElementById('printRoot');
+  const c = document.getElementById('scPage').cloneNode(true); c.removeAttribute('id');
+  root.innerHTML = ''; root.appendChild(c); window.print();
+}
+function fillScForm(r){
+  const set = (id, v) => { document.getElementById(id).value = v == null ? '' : v; };
+  set('scName', r.name); set('scGender', r.gender || 'M'); set('scNat', r.nationality); set('scPassport', r.passport); set('scEid', r.eid);
+  set('scDesig', r.designation); set('scJoin', r.joinDate); set('scTo', r.addressedTo || 'Whom It May Concern'); set('scPurpose', r.purpose);
+  set('scRef', r.ref); set('scDate', r.date || todayISO()); set('scSigner', r.signer); set('scSignerTitle', r.signerTitle != null ? r.signerTitle : 'Manager');
+  document.getElementById('scStamp').checked = r.stamp == null ? true : !!r.stamp;
+  document.getElementById('scRowsBody').innerHTML = '';
+  (r.rows || []).forEach(x => addScRow(x));
+  if(!(r.rows || []).length) scDefaultRows();
+  scTotals();
+}
+function scDefaultRows(){ ['Basic Salary', 'Housing Allowance', 'Transport Allowance'].forEach(d => addScRow({ desc: d })); }
+function scSavedSigner(){ try{ return JSON.parse(localStorage.getItem(SC_SIGNER_KEY) || 'null') || {}; } catch(e){ return {}; } }
+function newSalaryCert(){
+  scOpenedId = null;
+  const sg = scSavedSigner();
+  fillScForm({ date: todayISO(), signer: sg.name || '', signerTitle: sg.title || 'Manager', addressedTo: 'Whom It May Concern' });
+  document.getElementById('scRef').placeholder = `Next: ${scPeek()} (given when you generate)`;
+  document.getElementById('sc-preview-shell').style.display = 'none';
+  document.getElementById('scStatus').textContent = '';
+  renderScHistory();
+  document.getElementById('scName').focus();
+}
+function clearSalaryCertForm(){ if(confirm('Clear the form?')) newSalaryCert(); }
+async function openSalaryCert(id, download){
+  const r = loadScs()[id]; if(!r) return;
+  fillScForm(r); scOpenedId = id;
+  document.getElementById('scPage').innerHTML = buildSalaryCertHTML(r);
+  document.getElementById('sc-preview-shell').style.display = '';
+  document.getElementById('scStatus').textContent = `Opened ${r.ref} — change anything and click Generate to save it again.`;
+  renderScHistory();
+  if(download) await downloadSalaryCertPDF(); else document.getElementById('mainTab-salarycert').scrollIntoView({ behavior: 'smooth' });
+}
+function deleteSalaryCert(id){
+  const m = loadScs(); const r = m[id]; if(!r) return;
+  if(!confirm(`Delete salary certificate ${r.ref} for "${r.name}"?`)) return;
+  m[id] = { id, ref: r.ref, name: r.name, deleted: true, updatedAt: Date.now() };
+  saveScs(m); if(scOpenedId === id) scOpenedId = null; renderScHistory();
+}
+function renderScHistory(){
+  const box = document.getElementById('scHistList'); if(!box) return;
+  const q = (document.getElementById('scHistSearch').value || '').trim().toLowerCase();
+  const all = Object.values(loadScs()).filter(r => r && !r.deleted);
+  const list = all.filter(r => !q || [r.name, r.ref, r.designation].some(v => (v || '').toLowerCase().includes(q)))
+    .sort((a, b) => (b.date || '').localeCompare(a.date || '') || (b.updatedAt || 0) - (a.updatedAt || 0));
+  document.getElementById('scHistCount').textContent = all.length ? `${all.length} saved` : '';
+  if(!list.length){ box.innerHTML = `<div class="empty-note">${all.length ? 'Nothing matches your search.' : 'No salary certificates yet — every one you generate is saved here.'}</div>`; return; }
+  box.innerHTML = `<div class="qh-wrap"><table class="qh-table"><thead><tr><th>Ref</th><th>Date</th><th>Employee</th><th>Designation</th><th class="num">Monthly (AED)</th><th></th></tr></thead><tbody>` +
+    list.slice(0, 300).map(r => `<tr class="${r.id === scOpenedId ? 'on' : ''}"><td class="ref">${escapeHTML(r.ref)}</td><td>${escapeHTML(formatDateDMY(r.date || ''))}</td><td class="cust">${escapeHTML(r.name || '')}</td><td>${escapeHTML(r.designation || '')}</td><td class="num">${formatAmount(Number(r.total) || 0)}</td>
+      <td class="acts"><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openSalaryCert(this.dataset.id)">Open</button><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openSalaryCert(this.dataset.id, true)">PDF</button><button class="btn btn-outline-danger btn-xs" data-id="${escapeAttr(r.id)}" onclick="deleteSalaryCert(this.dataset.id)" title="Delete">✕</button></td></tr>`).join('') + `</tbody></table></div>`;
+}
+function initSalaryCert(){
+  if(!document.getElementById('scRowsBody').children.length){
+    const sg = scSavedSigner();
+    document.getElementById('scDate').value = todayISO();
+    if(sg.name) document.getElementById('scSigner').value = sg.name;
+    if(sg.title) document.getElementById('scSignerTitle').value = sg.title;
+    scDefaultRows();
+    document.getElementById('scRef').placeholder = `Next: ${scPeek()} (given when you generate)`;
+  }
+  renderScHistory();
+}
+
+
+/* ══════════════════ PAY SHEET (monthly payslip; saved locally like the salary certificate) ══════════════════ */
+const PS_KEY = 'windmillPaySheets_v1', PS_CNT = 'wmdev_psCounter';
+let psOpenedId = null;
+function loadPss(){ try{ return JSON.parse(localStorage.getItem(PS_KEY) || '{}') || {}; } catch(e){ return {}; } }
+function savePss(m){ localStorage.setItem(PS_KEY, JSON.stringify(m)); }
+function psNum(){ const used = Object.values(loadPss()).reduce((m, r) => Math.max(m, parseInt(String(r && r.ref || '').replace(/\D/g, ''), 10) || 0), 0); return Math.max(parseInt(localStorage.getItem(PS_CNT) || '0', 10) || 0, used); }
+function psPeek(){ return `PS-${String(psNum() + 1).padStart(4, '0')}`; }
+function nextPsRef(){ const n = psNum() + 1; try{ localStorage.setItem(PS_CNT, String(n)); } catch(e){} return `PS-${String(n).padStart(4, '0')}`; }
+function addPsRow(t, r){
+  r = r || {};
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td class="act"><input type="text" class="ps-desc" placeholder="${t === 'E' ? 'e.g. Basic Salary' : 'e.g. Advance'}" value="${escapeAttr(r.desc || '')}"></td>
+    <td class="amt"><input type="number" class="ps-amt" min="0" step="0.01" placeholder="0.00" value="${escapeAttr(r.amount != null && r.amount !== '' ? r.amount : '')}"></td>
+    <td class="remove-cell"><button class="remove-btn" onclick="this.closest('tr').remove(); psTotals();" title="Remove row">&times;</button></td>`;
+  document.getElementById(t === 'E' ? 'psEarnBody' : 'psDedBody').appendChild(tr);
+  tr.querySelector('.ps-amt').addEventListener('input', psTotals); psTotals();
+}
+function psRows(id){ return [...document.querySelectorAll('#' + id + ' tr')].map(tr => ({ desc: tr.querySelector('.ps-desc').value.trim(), amount: parseFloat(tr.querySelector('.ps-amt').value) || 0 })).filter(r => r.desc && r.amount > 0); }
+const psSum = a => Math.round(a.reduce((t, r) => t + r.amount, 0) * 100) / 100;
+function psTotals(){
+  const e = psSum(psRows('psEarnBody')), d = psSum(psRows('psDedBody'));
+  const el = document.getElementById('psRunningTotal'); if(el) el.textContent = `Earnings AED ${formatAmount(e)}  −  Deductions AED ${formatAmount(d)}  =  Net pay AED ${formatAmount(e - d)}`;
+}
+function psRecordFromForm(){
+  const v = id => document.getElementById(id).value.trim();
+  const earn = psRows('psEarnBody'), ded = psRows('psDedBody');
+  return { ref: v('psRef'), name: v('psName'), designation: v('psDesig'), empId: v('psId'), month: v('psMonth'), date: document.getElementById('psDate').value || todayISO(),
+    days: v('psDays'), mode: v('psMode'), signer: v('psSigner'), earn, ded, gross: psSum(earn), deductions: psSum(ded), net: Math.round((psSum(earn) - psSum(ded)) * 100) / 100 };
+}
+function psMonthLabel(m){ if(!/^\d{4}-\d{2}$/.test(m || '')) return m || ''; return new Date(+m.slice(0, 4), +m.slice(5) - 1, 1).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }); }
+function buildPaySheetHTML(r){
+  const e = escapeHTML, f = formatAmount;
+  const tbl = (title, rows, tot, lbl) => `<table class="pd-items"><thead><tr><th>#</th><th>${title}</th><th class="num">Amount (AED)</th></tr></thead><tbody>${rows.length ? rows.map((x, i) => `<tr><td class="idx">${i + 1}</td><td class="desc">${e(x.desc)}</td><td class="num">${f(x.amount)}</td></tr>`).join('') : '<tr><td class="idx">–</td><td class="desc">None</td><td class="num">0.00</td></tr>'}<tr><td></td><td class="desc"><b>${lbl}</b></td><td class="num"><b>${f(tot)}</b></td></tr></tbody></table>`;
+  return `
+  <div class="pd-head">
+    <div class="pd-brand"><img src="${CA_LOGO_DATA_URI}" alt="Windmill Café &amp; Roastery">
+      <div><div class="pd-co">Windmill Café And Roastery LLC SPC</div>
+      <div class="pd-co-sub">Al Ain, Abu Dhabi, United Arab Emirates<br>TRN 105506837100003<br>+971 55 563 0636 · +971 3 736 6902 · www.windmillcr.ae</div></div></div>
+    <div class="pd-title"><h1>PAY SHEET</h1>
+      <table class="pd-meta"><tr><td class="k">Reference No.</td><td class="v">${e(r.ref)}</td></tr><tr><td class="k">Pay month</td><td class="v">${e(psMonthLabel(r.month))}</td></tr><tr><td class="k">Payment date</td><td class="v">${e(pdDate(r.date))}</td></tr></table></div>
+  </div>
+  <div class="sc-subject">Employee: ${e(r.name)}${r.designation ? ' — ' + e(r.designation) : ''}</div>
+  <p class="sc-p">${r.empId ? `ID / Passport: <b>${e(r.empId)}</b>. ` : ''}${r.days ? `Days worked: <b>${e(r.days)}</b>. ` : ''}Payment mode: <b>${e(r.mode)}</b>.</p>
+  ${tbl('Earnings', r.earn, r.gross, 'Total earnings')}
+  ${tbl('Deductions', r.ded, r.deductions, 'Total deductions')}
+  <div class="pd-sum">
+    <div class="pd-words"><div class="pd-lbl">Net pay in words</div><div class="w">${amountInWordsAED(r.net)}</div></div>
+    <table class="pd-totals"><tr class="grand"><td>NET PAY (AED)</td><td>${f(r.net)}</td></tr></table>
+  </div>
+  <div class="pd-sign"><div><div class="line">${e(r.signer || '')}</div><div class="who">Prepared / approved by</div><div>Windmill Café And Roastery LLC SPC</div></div><div><div class="line">&nbsp;</div><div class="who">Employee signature</div><div>${e(r.name)}</div></div></div>
+  <div class="pd-foot"><div class="pd-foot-in">
+    <div><div class="hd">Registered office</div>Windmill Café And Roastery LLC SPC<br>Al Ain, Abu Dhabi, UAE<br>TRN 105506837100003</div>
+    <div><div class="hd">Contact</div>+971 55 563 0636 · +971 3 736 6902<br>www.windmillcr.ae</div>
+  </div></div>`;
+}
+async function generatePaySheet(){
+  const r = psRecordFromForm();
+  if(!r.name){ alert('Please enter the employee name.'); document.getElementById('psName').focus(); return false; }
+  if(!r.month){ alert('Please choose the pay month.'); document.getElementById('psMonth').focus(); return false; }
+  if(!r.earn.length){ alert('Add at least one earning with an amount.'); return false; }
+  if(!r.ref) r.ref = nextPsRef(); document.getElementById('psRef').value = r.ref;
+  const id = quoteId(r.ref), map = loadPss();
+  r.id = id; r.createdAt = (map[id] && map[id].createdAt) || Date.now(); r.updatedAt = Date.now();
+  map[id] = r; savePss(map); psOpenedId = id;
+  document.getElementById('psPage').innerHTML = buildPaySheetHTML(r);
+  document.getElementById('ps-preview-shell').style.display = '';
+  document.getElementById('psStatus').textContent = `✓ ${r.ref} saved`;
+  renderPsHistory(); return true;
+}
+async function downloadPaySheetPDF(){
+  if(!(await generatePaySheet())) return;
+  await sleep(80);
+  const st = document.getElementById('psStatus'); st.textContent = 'Preparing PDF…';
+  try{
+    const { jsPDF } = window.jspdf; const pdf = new jsPDF('p', 'mm', 'a4');
+    await elementToPdfPages(pdf, document.getElementById('psPage'), { cutSel: 'tr, table, p, .sc-subject, .pd-head, .pd-sum, .pd-sign, .pd-foot' });
+    const r = loadPss()[psOpenedId], blob = pdf.output('blob'), url = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = url; a.download = `${r.ref}_Pay-Sheet_${sanitizeFilename(r.name)}_${r.month}.pdf`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    st.textContent = 'Done — PDF downloaded.';
+  } catch(e){ st.textContent = 'Failed: ' + (e.message || e); }
+}
+async function printPaySheet(){
+  if(!(await generatePaySheet())) return;
+  const root = document.getElementById('printRoot'), c = document.getElementById('psPage').cloneNode(true); c.removeAttribute('id');
+  root.innerHTML = ''; root.appendChild(c); window.print();
+}
+function psDefaultRows(){ ['Basic Salary', 'Housing Allowance', 'Transport Allowance'].forEach(d => addPsRow('E', { desc: d })); ['Advance', 'Absence / Leave deduction'].forEach(d => addPsRow('D', { desc: d })); }
+function fillPsForm(r){
+  const set = (id, v) => { document.getElementById(id).value = v == null ? '' : v; };
+  set('psName', r.name); set('psDesig', r.designation); set('psId', r.empId); set('psMonth', r.month); set('psDate', r.date || todayISO()); set('psDays', r.days); set('psMode', r.mode || 'Bank transfer'); set('psRef', r.ref); set('psSigner', r.signer);
+  document.getElementById('psEarnBody').innerHTML = ''; document.getElementById('psDedBody').innerHTML = '';
+  if((r.earn || []).length || (r.ded || []).length){ (r.earn || []).forEach(x => addPsRow('E', x)); (r.ded || []).forEach(x => addPsRow('D', x)); } else psDefaultRows();
+  psTotals();
+}
+function newPaySheet(){
+  psOpenedId = null;
+  const sg = (() => { try{ return JSON.parse(localStorage.getItem('windmillSalaryCertSigner_v1') || 'null') || {}; } catch(e){ return {}; } })();
+  fillPsForm({ date: todayISO(), month: todayISO().slice(0, 7), signer: sg.name || '' });
+  document.getElementById('psRef').placeholder = `Next: ${psPeek()} (given when you generate)`;
+  document.getElementById('ps-preview-shell').style.display = 'none'; document.getElementById('psStatus').textContent = '';
+  renderPsHistory(); document.getElementById('psName').focus();
+}
+async function openPaySheet(id, download){
+  const r = loadPss()[id]; if(!r) return;
+  fillPsForm(r); psOpenedId = id;
+  document.getElementById('psPage').innerHTML = buildPaySheetHTML(r);
+  document.getElementById('ps-preview-shell').style.display = '';
+  document.getElementById('psStatus').textContent = `Opened ${r.ref} — change anything and click Generate to save it again.`;
+  renderPsHistory();
+  if(download) await downloadPaySheetPDF(); else document.getElementById('mainTab-paysheet').scrollIntoView({ behavior: 'smooth' });
+}
+function deletePaySheet(id){
+  const m = loadPss(), r = m[id]; if(!r || !confirm(`Delete pay sheet ${r.ref} for "${r.name}"?`)) return;
+  delete m[id]; savePss(m); if(psOpenedId === id) psOpenedId = null; renderPsHistory();
+}
+function renderPsHistory(){
+  const box = document.getElementById('psHistList'); if(!box) return;
+  const q = (document.getElementById('psHistSearch').value || '').trim().toLowerCase();
+  const all = Object.values(loadPss());
+  const list = all.filter(r => !q || [r.name, r.ref, r.month, r.designation].some(v => (v || '').toLowerCase().includes(q))).sort((a, b) => (b.month || '').localeCompare(a.month || '') || (b.updatedAt || 0) - (a.updatedAt || 0));
+  document.getElementById('psHistCount').textContent = all.length ? `${all.length} saved` : '';
+  if(!list.length){ box.innerHTML = `<div class="empty-note">${all.length ? 'Nothing matches your search.' : 'No pay sheets yet — every one you generate is saved here.'}</div>`; return; }
+  box.innerHTML = `<div class="qh-wrap"><table class="qh-table"><thead><tr><th>Ref</th><th>Month</th><th>Employee</th><th>Designation</th><th class="num">Net (AED)</th><th></th></tr></thead><tbody>` +
+    list.slice(0, 300).map(r => `<tr class="${r.id === psOpenedId ? 'on' : ''}"><td class="ref">${escapeHTML(r.ref)}</td><td>${escapeHTML(psMonthLabel(r.month))}</td><td class="cust">${escapeHTML(r.name || '')}</td><td>${escapeHTML(r.designation || '')}</td><td class="num">${formatAmount(Number(r.net) || 0)}</td>
+      <td class="acts"><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openPaySheet(this.dataset.id)">Open</button><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openPaySheet(this.dataset.id, true)">PDF</button><button class="btn btn-outline-danger btn-xs" data-id="${escapeAttr(r.id)}" onclick="deletePaySheet(this.dataset.id)" title="Delete">✕</button></td></tr>`).join('') + `</tbody></table></div>`;
+}
+function initPaySheet(){
+  if(!document.getElementById('psEarnBody').children.length){ newPaySheet(); return; }
+  renderPsHistory();
+}
 
 renderOldBalancesTable();
 renderAnalyticsOldBalancesPreview();
