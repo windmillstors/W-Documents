@@ -1071,6 +1071,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
 .ps-words{ margin-top:3mm; font-size:10.5px; color:#2b2420; } .ps-words b{ text-transform:uppercase; font-size:8.5px; letter-spacing:.09em; color:#a8742a; margin-right:2mm; }
 .ps-sig{ margin-top:18mm; width:55%; } .ps-sig .line{ border-bottom:1px solid #8a7f74; height:9mm; font-weight:700; font-size:11px; }
 .ps-sig .who{ margin-top:1.5mm; font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; } .ps-sig div.co{ font-size:9.5px; color:#5c534b; }
+.ps-bank{ margin-top:5mm; font-size:10.5px; color:#2b2420; line-height:1.55; } .ps-bank .hd{ text-transform:uppercase; font-size:8.5px; font-weight:800; letter-spacing:.09em; color:#a8742a; margin-bottom:1mm; } .ps-bank .pay-label{ display:inline-block; min-width:24mm; font-weight:700; }
 .ps-auto{ margin-top:8mm; font-size:8.8px; color:#7a7068; text-align:center; }
 </style>
 </head>
@@ -1101,7 +1102,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
   <button class="rail-btn" data-nav="quotation" onclick="navTo('quotation')" title="Quotation" aria-label="Quotation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span>Quote</span></button>
   <button class="rail-btn" data-nav="delivery" onclick="navTo('delivery')" title="Delivery Note" aria-label="Delivery Note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="6" width="13" height="10" rx="1.5"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg><span>Delivery</span></button>
   <button class="rail-btn" data-nav="salarycert" onclick="navTo('salarycert')" title="Salary Certificate" aria-label="Salary Certificate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><circle cx="12.5" cy="14" r="2.6"/><path d="M11 17.5l-.8 3 2.3-1.2 2.3 1.2-.8-3"/></svg><span>Salary Cert</span></button>
-  <button class="rail-btn" data-nav="paysheet" onclick="navTo('paysheet')" title="Pay Sheet" aria-label="Pay Sheet"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Pay Sheet</span></button>
+  <button class="rail-btn" data-nav="paysheet" onclick="navTo('paysheet')" title="Payslip" aria-label="Payslip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>Payslip</span></button>
   <button class="rail-btn" data-nav="creditagreement" onclick="navTo('creditagreement')" title="Credit agreement" aria-label="Credit agreement"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l11-11-4-4L4 16z"/><path d="M13 7l4 4"/></svg><span>Agreement</span></button>
   <button class="rail-btn" data-nav="pcsummary" onclick="navTo('pcsummary')" title="Petty cash" aria-label="Petty cash"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16" cy="14.5" r="1.3"/></svg><span>Petty Cash</span></button>
   <button class="rail-btn" data-nav="customers" onclick="navTo('customers')" title="Customers" aria-label="Customers"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 11a3 3 0 100-6"/><path d="M18 20c0-2.4-1-4.4-2.6-5.4"/></svg><span>Customers</span></button>
@@ -1126,7 +1127,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
       <button class="btn btn-coffee" onclick="navTo('statement')">＋ New SOA</button>
       <button class="btn btn-gold" onclick="navTo('quotation'); newQuotation();">＋ New Quotation</button>
       <button class="btn btn-ghost" onclick="navTo('salarycert'); newSalaryCert();">＋ Salary Certificate</button>
-      <button class="btn btn-ghost" onclick="navTo('paysheet'); newPaySheet();">＋ Pay Sheet</button>
+      <button class="btn btn-ghost" onclick="navTo('paysheet'); newPaySheet();">＋ Payslip</button>
       <button class="btn btn-ghost" onclick="navTo('analytics')">Paste payments</button>
       <button class="btn btn-ghost" onclick="navTo('branchsales')">Branch sales</button>
       <button class="btn btn-ghost" onclick="navTo('customers')">Customers</button>
@@ -1809,7 +1810,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
         <div><label for="scDesig">Designation / job title</label><input type="text" id="scDesig" placeholder="e.g. Barista"></div>
         <div><label for="scJoin">Date of joining</label><input type="date" id="scJoin"></div>
         <div class="span2"><label for="scTo">Addressed to</label><input type="text" id="scTo" value="Whom It May Concern" placeholder="e.g. The Manager, ADCB Bank"></div>
-        <div class="span2"><label for="scPurpose">Purpose (optional — shown in the letter)</label><input type="text" id="scPurpose" placeholder="e.g. bank account opening / visa application"></div>
+        <div class="span2"><label for="scPurpose">Purpose (optional — for your record, not printed)</label><input type="text" id="scPurpose" placeholder="e.g. bank account opening / visa application"></div>
         <div><label for="scRef">Reference no.</label><input type="text" id="scRef" placeholder="given when you generate"></div>
         <div><label for="scDate">Issue date</label><input type="date" id="scDate"></div>
         <div><label for="scSigner">Signatory name</label><input type="text" id="scSigner" placeholder="e.g. Ahmed Hassan"></div>
@@ -1847,7 +1848,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
 
   <div id="mainTab-paysheet" class="main-tab-panel" style="display:none;">
     <div class="panel">
-      <h2 class="step-h"><span>Pay sheet</span><span class="step-tip">Monthly payslip for Windmill Café And Roastery staff</span></h2>
+      <h2 class="step-h"><span>Payslip</span><span class="step-tip">Monthly payslip for Windmill Café And Roastery staff</span></h2>
       <div class="cust-grid">
         <div class="span2"><label for="psName">Employee full name</label><input type="text" id="psName" placeholder="e.g. Mohammed Ali"></div>
         <div><label for="psDesig">Designation</label><input type="text" id="psDesig" placeholder="e.g. Barista"></div>
@@ -1855,8 +1856,16 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
         <div><label for="psMonth">Pay month</label><input type="month" id="psMonth"></div>
         <div><label for="psDate">Payment date</label><input type="date" id="psDate"></div>
         <div><label for="psDays">Days worked (optional)</label><input type="number" id="psDays" min="0" max="31" placeholder="e.g. 30"></div>
-        <div><label for="psMode">Payment mode</label><select id="psMode"><option>Bank transfer</option><option>Cash</option><option>Cheque</option></select></div>
-        <div><label for="psSigner">Prepared / approved by</label><input type="text" id="psSigner" placeholder="e.g. Ahmed Hassan"></div>
+        <div><label for="psMode">Payment mode</label><select id="psMode" onchange="psToggleBank()"><option>Bank transfer</option><option>Cash</option><option>Cheque</option></select></div>
+        <div><label for="psSigner">Signed by (name)</label><input type="text" id="psSigner" placeholder="e.g. Muhsin Musthafa C K"></div>
+        <div><label for="psSignerTitle">Signatory title</label><input type="text" id="psSignerTitle" value="Manager" placeholder="e.g. Manager"></div>
+      </div>
+      <div id="psBankWrap" class="cust-grid" style="margin-top:12px;">
+        <div class="span2" style="font-size:12px;font-weight:700;color:var(--ink-soft);">Bank transfer details (employee's account)</div>
+        <div><label for="psBankName">Bank</label><input type="text" id="psBankName" placeholder="e.g. Abu Dhabi Commercial Bank"></div>
+        <div><label for="psBankBranch">Branch (optional)</label><input type="text" id="psBankBranch"></div>
+        <div><label for="psBankAcct">Account No.</label><input type="text" id="psBankAcct"></div>
+        <div><label for="psBankIban">IBAN</label><input type="text" id="psBankIban" placeholder="AE.."></div>
       </div>
       <div style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
         <div><table class="rows-table"><thead><tr><th class="act">Earnings</th><th class="amt" style="width:30%;">AED</th><th></th></tr></thead><tbody id="psEarnBody"></tbody></table>
@@ -1869,14 +1878,14 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
         <button class="btn btn-gold" onclick="generatePaySheet()">Generate &amp; Save</button>
         <button class="btn btn-coffee" onclick="downloadPaySheetPDF()">Download PDF</button>
         <button class="btn btn-ghost" onclick="printPaySheet()">Print</button>
-        <button class="btn btn-ghost" onclick="newPaySheet()">＋ New Pay Sheet</button>
+        <button class="btn btn-ghost" onclick="newPaySheet()">＋ New Payslip</button>
         <button class="btn btn-outline-danger" onclick="if(confirm('Clear the form?')) newPaySheet()">Clear</button>
         <span id="psStatus" style="font-size:12.5px;color:var(--ink-soft);align-self:center;"></span>
       </div>
       <div id="ps-preview-shell" style="display:none;margin-top:18px;"><div class="q-a4-page sc-page pd-page" id="psPage"></div></div>
     </div>
     <div class="panel">
-      <h2 class="step-h"><span>Saved pay sheets</span><span class="step-tip" id="psHistCount"></span></h2>
+      <h2 class="step-h"><span>Saved payslips</span><span class="step-tip" id="psHistCount"></span></h2>
       <input type="text" id="psHistSearch" placeholder="Search by employee or month…" oninput="renderPsHistory()" style="width:100%;margin-bottom:12px;">
       <div id="psHistList"></div>
     </div>
@@ -3340,7 +3349,7 @@ const NAV_INFO = {
   quotation:      ['Quotation', 'Make a quotation — every quotation is saved and can be opened again'],
   delivery:       ['Delivery Note', 'Make a delivery note — or start from a saved quotation. Every note is saved'],
   salarycert:     ['Salary Certificate', 'Make a salary certificate for a Windmill employee — every certificate is saved'],
-  paysheet:       ['Pay Sheet', 'Make a monthly pay sheet (payslip) for an employee — every pay sheet is saved'],
+  paysheet:       ['Payslip', 'Make a monthly payslip for an employee — every payslip is saved'],
   creditagreement:['Credit Agreement', 'Fill in the customer and download the agreement'],
   pcsummary:      ['Petty Cash Book', 'Paste the month from Excel — it is sorted by category with totals'],
   settings:       ['Settings', 'Client address book, backup & restore']
@@ -7285,7 +7294,7 @@ async function openDeliveryNote(id, download){
   fillDnForm(r); dnOpenedId = id;
   document.getElementById('dnPage').innerHTML = buildDeliveryNoteHTML(r);
   document.getElementById('dn-preview-shell').style.display = '';
-  document.getElementById('dnStatus').textContent = `Opened pay sheet — change anything and click Generate to save it again.`;
+  document.getElementById('dnStatus').textContent = `Opened payslip — change anything and click Generate to save it again.`;
   renderDnHistory();
   if(download) await downloadDeliveryNotePDF(); else document.getElementById('mainTab-delivery').scrollIntoView({ behavior: 'smooth' });
 }
@@ -7407,7 +7416,6 @@ function buildSalaryCertHTML(r){
     <div class="pd-words"><div class="pd-lbl">Total monthly salary in words</div><div class="w">${amountInWordsAED(r.total)}</div></div>
     <table class="pd-totals"><tr class="grand"><td>TOTAL MONTHLY (AED)</td><td>${f(r.total)}</td></tr></table>
   </div>
-  <div class="sc-note">This certificate is issued upon ${his} request${r.purpose ? ` for <b>${e(r.purpose)}</b>` : ''}, without any liability on the part of the company.</div>
   ${r.stamp ? `<div class="sc-reg">Yours faithfully,</div><div class="pd-sign"><div><div class="line">${e(r.signer || '')}</div><div class="who">Authorised signatory</div><div>${e(r.signerTitle || '')}${r.signerTitle ? ' · ' : ''}Windmill Café And Roastery LLC SPC</div></div></div>` : ''}
   <div class="pd-foot"><div class="pd-foot-in">
     <div><div class="hd">Registered office</div>Windmill Café And Roastery LLC SPC<br>Al Ain, Abu Dhabi, UAE<br>TRN 105506837100003</div>
@@ -7544,8 +7552,10 @@ function psRecordFromForm(){
   const v = id => document.getElementById(id).value.trim();
   const earn = psRows('psEarnBody'), ded = psRows('psDedBody');
   return { name: v('psName'), designation: v('psDesig'), empId: v('psId'), month: v('psMonth'), date: document.getElementById('psDate').value || todayISO(),
-    days: v('psDays'), mode: v('psMode'), signer: v('psSigner'), earn, ded, gross: psSum(earn), deductions: psSum(ded), net: Math.round((psSum(earn) - psSum(ded)) * 100) / 100 };
+    days: v('psDays'), mode: v('psMode'), signer: v('psSigner'), signerTitle: v('psSignerTitle') || 'Manager',
+    bankName: v('psBankName'), bankBranch: v('psBankBranch'), bankAcct: v('psBankAcct'), bankIban: v('psBankIban'), earn, ded, gross: psSum(earn), deductions: psSum(ded), net: Math.round((psSum(earn) - psSum(ded)) * 100) / 100 };
 }
+function psToggleBank(){ const w = document.getElementById('psBankWrap'), m = document.getElementById('psMode'); if(w && m) w.style.display = m.value === 'Bank transfer' ? '' : 'none'; }
 function psMonthLabel(m){ if(!/^\d{4}-\d{2}$/.test(m || '')) return m || ''; return new Date(+m.slice(0, 4), +m.slice(5) - 1, 1).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }); }
 function buildPaySheetHTML(r){
   const e = escapeHTML, f = formatAmount;
@@ -7556,7 +7566,7 @@ function buildPaySheetHTML(r){
     <div class="pd-brand"><img src="${CA_LOGO_DATA_URI}" alt="Windmill Café &amp; Roastery">
       <div><div class="pd-co">Windmill Café And Roastery LLC SPC</div>
       <div class="pd-co-sub">Al Ain, Abu Dhabi, United Arab Emirates<br>TRN 105506837100003<br>+971 55 563 0636 · +971 3 736 6902 · www.windmillcr.ae</div></div></div>
-    <div class="pd-title"><h1>PAY SHEET</h1>
+    <div class="pd-title"><h1>PAYSLIP</h1>
       <table class="pd-meta"><tr><td class="k">Pay period</td><td class="v">${e(psMonthLabel(r.month))}</td></tr></table><div class="ps-conf">CONFIDENTIAL</div></div>
   </div>
   <div class="sc-subject">Salary statement for the month of ${e(psMonthLabel(r.month))}</div>
@@ -7564,7 +7574,13 @@ function buildPaySheetHTML(r){
   <div class="ps-cols"><div>${tbl('Earnings', r.earn, r.gross, 'Total earnings')}</div><div>${tbl('Deductions', r.ded, r.deductions, 'Total deductions')}</div></div>
   <div class="ps-net"><div class="l">Net pay</div><div class="a">AED ${f(r.net)}</div></div>
   <div class="ps-words"><b>In words</b>${amountInWordsAED(r.net)}</div>
-  <div class="ps-sig"><div class="line">${e(r.signer || '')}</div><div class="who">Authorised signatory</div><div class="co">Windmill Café And Roastery LLC SPC</div></div>
+  ${(r.mode === 'Bank transfer' && (r.bankName || r.bankAcct || r.bankIban)) ? `<div class="ps-bank"><div class="hd">Bank transfer</div>
+    <div><span class="pay-label">Account Name</span>: ${e(r.name)}</div>
+    ${r.bankName ? `<div><span class="pay-label">Bank</span>: ${e(r.bankName)}</div>` : ''}
+    ${r.bankBranch ? `<div><span class="pay-label">Branch</span>: ${e(r.bankBranch)}</div>` : ''}
+    ${r.bankAcct ? `<div><span class="pay-label">Account No.</span>: ${e(r.bankAcct)}</div>` : ''}
+    ${r.bankIban ? `<div><span class="pay-label">IBAN</span>: ${e(r.bankIban)}</div>` : ''}</div>` : ''}
+  <div class="ps-sig"><div class="line">${e(r.signer || '')}</div><div class="who">Authorised signatory</div><div class="co">${e(r.signerTitle || 'Manager')} · Windmill Café And Roastery LLC SPC</div></div>
   <div class="ps-auto">This is a computer-generated document. It is strictly confidential and intended solely for the employee named above.</div>
   <div class="pd-foot"><div class="pd-foot-in">
     <div><div class="hd">Registered office</div>Windmill Café And Roastery LLC SPC<br>Al Ain, Abu Dhabi, UAE<br>TRN 105506837100003</div>
@@ -7581,7 +7597,7 @@ async function generatePaySheet(){
   map[id] = r; savePss(map); psOpenedId = id;
   document.getElementById('psPage').innerHTML = buildPaySheetHTML(r);
   document.getElementById('ps-preview-shell').style.display = '';
-  document.getElementById('psStatus').textContent = '✓ Pay sheet saved';
+  document.getElementById('psStatus').textContent = '✓ Payslip saved';
   renderPsHistory(); return true;
 }
 async function downloadPaySheetPDF(){
@@ -7590,9 +7606,9 @@ async function downloadPaySheetPDF(){
   const st = document.getElementById('psStatus'); st.textContent = 'Preparing PDF…';
   try{
     const { jsPDF } = window.jspdf; const pdf = new jsPDF('p', 'mm', 'a4');
-    await elementToPdfPages(pdf, document.getElementById('psPage'), { cutSel: 'tr, table, p, .ps-box, .ps-cols, .ps-net, .ps-words, .ps-sig, .pd-head, .pd-foot' });
+    await elementToPdfPages(pdf, document.getElementById('psPage'), { cutSel: 'tr, table, p, .ps-box, .ps-cols, .ps-net, .ps-words, .ps-bank, .ps-sig, .pd-head, .pd-foot' });
     const r = loadPss()[psOpenedId], blob = pdf.output('blob'), url = URL.createObjectURL(blob), a = document.createElement('a');
-    a.href = url; a.download = `Pay-Sheet_${sanitizeFilename(r.name)}_${r.month}.pdf`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    a.href = url; a.download = `Payslip_${sanitizeFilename(r.name)}_${r.month}.pdf`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     st.textContent = 'Done — PDF downloaded.';
   } catch(e){ st.textContent = 'Failed: ' + (e.message || e); }
 }
@@ -7604,7 +7620,8 @@ async function printPaySheet(){
 function psDefaultRows(){ ['Basic Salary', 'Housing Allowance', 'Transport Allowance'].forEach(d => addPsRow('E', { desc: d })); ['Advance', 'Absence / Leave deduction'].forEach(d => addPsRow('D', { desc: d })); }
 function fillPsForm(r){
   const set = (id, v) => { document.getElementById(id).value = v == null ? '' : v; };
-  set('psName', r.name); set('psDesig', r.designation); set('psId', r.empId); set('psMonth', r.month); set('psDate', r.date || todayISO()); set('psDays', r.days); set('psMode', r.mode || 'Bank transfer'); set('psSigner', r.signer);
+  set('psName', r.name); set('psDesig', r.designation); set('psId', r.empId); set('psMonth', r.month); set('psDate', r.date || todayISO()); set('psDays', r.days); set('psMode', r.mode || 'Bank transfer'); set('psSigner', r.signer); set('psSignerTitle', r.signerTitle || 'Manager');
+  set('psBankName', r.bankName); set('psBankBranch', r.bankBranch); set('psBankAcct', r.bankAcct); set('psBankIban', r.bankIban); psToggleBank();
   document.getElementById('psEarnBody').innerHTML = ''; document.getElementById('psDedBody').innerHTML = '';
   if((r.earn || []).length || (r.ded || []).length){ (r.earn || []).forEach(x => addPsRow('E', x)); (r.ded || []).forEach(x => addPsRow('D', x)); } else psDefaultRows();
   psTotals();
@@ -7612,7 +7629,7 @@ function fillPsForm(r){
 function newPaySheet(){
   psOpenedId = null;
   const sg = (() => { try{ return JSON.parse(localStorage.getItem('windmillSalaryCertSigner_v1') || 'null') || {}; } catch(e){ return {}; } })();
-  fillPsForm({ date: todayISO(), month: todayISO().slice(0, 7), signer: sg.name || '' });
+  fillPsForm({ date: todayISO(), month: todayISO().slice(0, 7), signer: sg.name || '', signerTitle: sg.title || 'Manager' });
   document.getElementById('ps-preview-shell').style.display = 'none'; document.getElementById('psStatus').textContent = '';
   renderPsHistory(); document.getElementById('psName').focus();
 }
@@ -7626,7 +7643,7 @@ async function openPaySheet(id, download){
   if(download) await downloadPaySheetPDF(); else document.getElementById('mainTab-paysheet').scrollIntoView({ behavior: 'smooth' });
 }
 function deletePaySheet(id){
-  const m = loadPss(), r = m[id]; if(!r || !confirm(`Delete the pay sheet for "${r.name}"?`)) return;
+  const m = loadPss(), r = m[id]; if(!r || !confirm(`Delete the payslip for "${r.name}"?`)) return;
   delete m[id]; savePss(m); if(psOpenedId === id) psOpenedId = null; renderPsHistory();
 }
 function renderPsHistory(){
@@ -7635,7 +7652,7 @@ function renderPsHistory(){
   const all = Object.values(loadPss());
   const list = all.filter(r => !q || [r.name, r.month, r.designation].some(v => (v || '').toLowerCase().includes(q))).sort((a, b) => (b.month || '').localeCompare(a.month || '') || (b.updatedAt || 0) - (a.updatedAt || 0));
   document.getElementById('psHistCount').textContent = all.length ? `${all.length} saved` : '';
-  if(!list.length){ box.innerHTML = `<div class="empty-note">${all.length ? 'Nothing matches your search.' : 'No pay sheets yet — every one you generate is saved here.'}</div>`; return; }
+  if(!list.length){ box.innerHTML = `<div class="empty-note">${all.length ? 'Nothing matches your search.' : 'No payslips yet — every one you generate is saved here.'}</div>`; return; }
   box.innerHTML = `<div class="qh-wrap"><table class="qh-table"><thead><tr><th>Month</th><th>Employee</th><th>Designation</th><th class="num">Net (AED)</th><th></th></tr></thead><tbody>` +
     list.slice(0, 300).map(r => `<tr class="${r.id === psOpenedId ? 'on' : ''}"><td>${escapeHTML(psMonthLabel(r.month))}</td><td class="cust">${escapeHTML(r.name || '')}</td><td>${escapeHTML(r.designation || '')}</td><td class="num">${formatAmount(Number(r.net) || 0)}</td>
       <td class="acts"><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openPaySheet(this.dataset.id)">Open</button><button class="btn btn-ghost btn-xs" data-id="${escapeAttr(r.id)}" onclick="openPaySheet(this.dataset.id, true)">PDF</button><button class="btn btn-outline-danger btn-xs" data-id="${escapeAttr(r.id)}" onclick="deletePaySheet(this.dataset.id)" title="Delete">✕</button></td></tr>`).join('') + `</tbody></table></div>`;
