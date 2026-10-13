@@ -1677,7 +1677,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
           <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-top:10px;">
             <div style="flex:2;min-width:200px;">
               <label for="qNewItemName" style="margin-bottom:4px;">Item Name</label>
-              <input type="text" id="qNewItemName" placeholder="e.g. Colombia Bubble Brew" oninput="if(!this.value.trim()){ qEditingItem = null; document.getElementById('qSaveItemBtn').textContent = '+ Save Item'; }">
+              <input type="text" id="qNewItemName" placeholder="e.g. Colombia Bubble Brew" oninput="if(!this.value.trim()){ qEditingItem = null; document.getElementById('qSaveItemBtn').textContent = '+ Save Item'; document.getElementById('qSaveNewBtn').style.display = 'none'; }">
             </div>
             <div style="flex:1;min-width:140px;">
               <label for="qNewItemCategory" style="margin-bottom:4px;">Category</label>
@@ -1688,6 +1688,7 @@ table.pd-totals tr + tr td{ border-top:1px solid var(--pd-rule); }
               <input type="text" id="qNewItemPrice" placeholder="e.g. 310.00">
             </div>
             <button class="btn btn-ghost" id="qSaveItemBtn" onclick="addCatalogItem()">+ Save Item</button>
+            <button class="btn btn-ghost" id="qSaveNewBtn" style="display:none;" onclick="addCatalogItem(true)" title="Adds this as a separate item and leaves the original where it is">+ Save as New (keep original)</button>
           </div>
           <div style="margin-top:10px;">
             <button class="btn btn-ghost" style="font-size:11.5px;padding:6px 12px;" onclick="loadDefaultBeanCatalog()">+ Add Windmill Bean List (categorized)</button>
@@ -6074,6 +6075,7 @@ const DEFAULT_BEAN_CATALOG = [
 
 function loadDefaultBeanCatalog(){
   const catalog = loadItemsCatalog();
+  const before = catalog.map(i => ({ name: i.name, price: i.price, category: i.category || '' }));   // safety copy
   let added = 0;
   DEFAULT_BEAN_CATALOG.forEach(defItem => {
     // already in this category → leave it; only an UNcategorized item with this name is moved in.
@@ -6089,8 +6091,13 @@ function loadDefaultBeanCatalog(){
       added++;
     }
   });
+  // safety check: every item that existed before (Drip Box, Other / Delivery …) must still be here with the same price
+  const lost = before.filter(b => !catalog.some(i => itemIdKey(i) === itemIdKey(b) && Number(i.price) === Number(b.price)) &&
+                                  !(!(b.category || '').trim() && catalog.some(i => i.name.toLowerCase() === b.name.toLowerCase())));
+  lost.forEach(b => catalog.push({ name: b.name, price: b.price, category: b.category }));
   saveItemsCatalog(catalog);
   renderCatalogList();
+  if(lost.length) console.warn('[bean list] restored', lost);
   alert(added ? `Added ${added} new bean(s). Existing items had their category updated. Edit prices in the list below.` : 'All bean names already existed — categories were refreshed.');
 }
 
@@ -6173,7 +6180,7 @@ function editCatalogItem(name, category){
   document.getElementById('qNewItemName').value = it.name;
   document.getElementById('qNewItemCategory').value = (it.category || '').trim();
   document.getElementById('qNewItemPrice').value = it.price ? Number(it.price).toFixed(2) : '';
-  document.getElementById('qSaveItemBtn').textContent = '✓ Update Item';
+  document.getElementById('qSaveItemBtn').textContent = '✓ Update Item (replaces original)'; document.getElementById('qSaveNewBtn').style.display = '';
   const pr = document.getElementById('qNewItemPrice'); pr.focus(); pr.select();
 }
 function refreshCategorySelect(){
@@ -6193,7 +6200,7 @@ function renderCatalogList(){
       return `<span class="qcat-chip">${escapeHTML(c)} <small>${n}</small><button data-c="${escapeAttr(c)}" onclick="renameCategory(this.dataset.c)" title="Rename">✎</button><button data-c="${escapeAttr(c)}" onclick="deleteCategory(this.dataset.c)" title="Delete">&times;</button></span>`;
     }).join('') : '<span style="color:var(--ink-soft);font-size:12.5px;">No categories yet — add one below.</span>';
   refreshCategorySelect();
-  const btn = document.getElementById('qSaveItemBtn'); if(btn && !document.getElementById('qNewItemName').value){ btn.textContent = '+ Save Item'; qEditingItem = null; }
+  const btn = document.getElementById('qSaveItemBtn'); if(btn && !document.getElementById('qNewItemName').value){ btn.textContent = '+ Save Item'; qEditingItem = null; const nb = document.getElementById('qSaveNewBtn'); if(nb) nb.style.display = 'none'; }
   if(!catalog.length && !cats.length){
     listEl.innerHTML = '<span style="color:var(--ink-soft);">No saved items yet — add one above.</span>';
   } else {
@@ -6226,7 +6233,7 @@ function renderCatalogList(){
   refreshUnitSelects();
 }
 
-function addCatalogItem(){
+function addCatalogItem(asNew){
   const nameEl = document.getElementById('qNewItemName');
   const priceEl = document.getElementById('qNewItemPrice');
   const categoryEl = document.getElementById('qNewItemCategory');
@@ -6237,6 +6244,7 @@ function addCatalogItem(){
   if(isNaN(price) || price < 0){ alert('Enter a valid unit price.'); return; }
   let catalog = loadItemsCatalog();
   const target = itemIdKey({ name, category });
+  if(asNew) qEditingItem = null;                      // "Save as New": the original item (e.g. in Drip Box) is NEVER touched
   if(qEditingItem){                                   // changing an existing item: take the old one out first
     const old = itemIdKey(qEditingItem);
     if(old !== target) catalog = catalog.filter(i => itemIdKey(i) !== old);
@@ -6249,6 +6257,7 @@ function addCatalogItem(){
   nameEl.value = '';
   priceEl.value = '';
   document.getElementById('qSaveItemBtn').textContent = '+ Save Item';
+  document.getElementById('qSaveNewBtn').style.display = 'none';
   renderCatalogList();
 }
 
